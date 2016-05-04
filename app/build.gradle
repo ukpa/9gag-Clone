@@ -13,7 +13,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.amazon.mysampleapp"
+        applicationId "com.angleapp"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -47,6 +47,8 @@ dependencies {
     compile('com.amazonaws:aws-android-sdk-core:2.2.11')
     compile('com.amazonaws:aws-android-sdk-cognito:2.2.11')
     compile('com.amazonaws:aws-android-sdk-s3:2.2.11')
+    compile('com.amazonaws:aws-android-sdk-ddb:2.2.11')
+    compile('com.amazonaws:aws-android-sdk-ddb-mapper:2.2.11')
     compile('com.amazonaws:aws-android-sdk-mobileanalytics:2.2.11')
     compile('com.amazonaws:aws-android-sdk-lambda:2.2.11')
     compile('com.amazonaws:aws-android-sdk-sns:2.2.11')
