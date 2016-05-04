@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.0_e85791d1b7d9e1f1ae89d204ab204b6d596fb213/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-mobileanalytics/2.2.11/293e98aaec181ec364c00db53b6015d322a65c8f/aws-android-sdk-mobileanalytics-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="293e98aaec181ec364c00db53b6015d322a65c8f">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-mobileanalytics-2.2.11_98b75b8f1f1e48514847b57f0cc5da93129584d5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.0_c582a22f96824129b6977b5da47dedfe933ae8db/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="0d768397d3a6eb7ed3d0d05f1ba2da4da055cbff">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_95fdf70d130dc16333065f565b439ae09b7d2c96/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-lambda/2.2.11/adb1a48635725403e60aa5eec3e6675df6f1542d/aws-android-sdk-lambda-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="adb1a48635725403e60aa5eec3e6675df6f1542d">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-lambda-2.2.11_488c558e8c37a8cc00e5c8288f19dff10db2e3db/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-sns/2.2.11/f12ba81f9a5c53bdc2d3146dd5933f582a0bba23/aws-android-sdk-sns-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f12ba81f9a5c53bdc2d3146dd5933f582a0bba23">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-sns-2.2.11_e6735e1991c2af85575f1639a5ff256ee96028a2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-cognito/2.2.11/a0a93d1bd95a14a80a86bf197eb8db507031e832/aws-android-sdk-cognito-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a0a93d1bd95a14a80a86bf197eb8db507031e832">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-cognito-2.2.11_ab9433b04e1eee99a7e71b75f546fdcfbea5d46a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.0_ddbafe34c852645b431812477d68ce01b5213def/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-core/2.2.11/26f86360a57bc6f750e8ee1628c45e1eda4abe68/aws-android-sdk-core-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="26f86360a57bc6f750e8ee1628c45e1eda4abe68">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-core-2.2.11_7954d5122ccb09171b6e3799ef5b056a097463bd/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-7.8.0_5aee9035ad666e89c4ad362fdd830274cb84bede/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.2.11/4aa510782be09934b13b0259ac3246a4be164c27/aws-android-sdk-s3-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4aa510782be09934b13b0259ac3246a4be164c27">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-s3-2.2.11_cfa410d6c0cf886a83a46d3ee3efea6decb146e6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-sqs/2.2.11/c110f281a77612eabe92248dfc99621d58e0a145/aws-android-sdk-sqs-2.2.11.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c110f281a77612eabe92248dfc99621d58e0a145">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-sqs-2.2.11_001ac9549947774d9c17b37fc24e7329d296cb77/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_4d9e67c69298d3797268331c755f4c3e7d43134c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4b12a2499a8661223dd786d6f73a74d555b69af6">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e0fd7b6a8b1cf206e66c9c64c8f1202633c34263/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-7.8.0_ad5a9f32373364b6b4a47e533c03e043a16823dc/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.8.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-7.8.0_849994941dbf922f8bc0bd9333d545554e0b841c/classes.dex" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.0_07d72f29e8de4cef5c5a5c10b47b51f2e3101b7e/classes.dex" />
+    </item>
+
+</items>
