@@ -47,7 +47,7 @@
         <activity
             android:name=".SignInActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/title_activity_sign_in"></activity>
+            android:label="@string/title_activity_sign_in" />
 
         <!-- BEGIN - APP CONTENT DELIVERY AND USER DATA STORAGE -->
 
@@ -78,7 +78,7 @@
             android:name="com.amazonaws.mobile.downloader.query.DownloadQueueProvider"
             android:authorities="@string/download_queue_provider_authority"
             android:enabled="true"
-            android:exported="false"></provider>
+            android:exported="false" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="@string/content_file_provider_authority"
@@ -118,7 +118,8 @@
 
         <!-- END - PUSH NOTIFICATIONS WITH GOOGLE CLOUD MESSAGING (GCM) -->
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".UploadActivity"></activity>
     </application>
 
 </manifest>

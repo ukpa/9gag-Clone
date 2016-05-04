@@ -10,9 +10,11 @@ package com.angleapp;
 
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.push.PushManager;
+import com.amazonaws.mobile.user.IdentityManager;
 
 /**
  * Application class responsible for initializing singletons and other common components.
@@ -20,6 +22,7 @@ import com.amazonaws.mobile.push.PushManager;
 public class Application extends MultiDexApplication {
 
     private final static String LOG_TAG = Application.class.getSimpleName();
+    public static String userId;
 
     @Override
     public void onCreate() {
@@ -40,6 +43,22 @@ public class Application extends MultiDexApplication {
                 // ...Put any application-specific push state change logic here...
             }
         });
+        AWSMobileClient
+                .defaultMobileClient()
+                .getIdentityManager()
+                .getUserID(new IdentityManager.IdentityHandler() {
+                    @Override
+                    public void handleIdentityID(final String identityId) {
+                        userId = identityId;
+                    }
+
+                    @Override
+                    public void handleError(final Exception exception) {
+                        // This should never happen since the Identity ID is retrieved
+                        // when the Application starts.
+                        userId = null;
+                    }
+                });
 
         // ...Put any application-specific initialization logic here...
     }

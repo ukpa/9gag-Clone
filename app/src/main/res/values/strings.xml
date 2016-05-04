@@ -160,4 +160,5 @@
     <string name="settings_fragment_dialog_title">Please wait &#8230;</string>
     <string name="settings_fragment_dialog_message">Loading&#8230;</string>
     <string name="settings_fragment_prompt">Please choose a theme:</string>
+    <string name="ic_upload">Upload</string>
 </resources>

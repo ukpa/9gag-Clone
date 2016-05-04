@@ -11,6 +11,8 @@ package com.angleapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
@@ -98,6 +100,8 @@ public class SplashActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.splashCoordinator);
+        Snackbar.make(coordinatorLayout,"Welcome to Angel App, loads of fun awaits!",Snackbar.LENGTH_LONG).show();
 
         final Thread thread = new Thread(new Runnable() {
             public void run() {
@@ -125,6 +129,7 @@ public class SplashActivity extends Activity {
             }
         });
         thread.start();
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -41,13 +42,13 @@ public class SignInActivity extends Activity {
         @Override
         public void onSuccess(final IdentityProvider provider) {
             Log.d(LOG_TAG, String.format("User sign-in with %s succeeded",
-                provider.getDisplayName()));
+                provider.getUserName()));
 
             // The sign-in manager is no longer needed once signed in.
             SignInManager.dispose();
 
-            Toast.makeText(SignInActivity.this, String.format("Sign-in with %s succeeded.",
-                provider.getDisplayName()), Toast.LENGTH_LONG).show();
+            //Toast.makeText(SignInActivity.this, String.format("Sign-in with %s succeeded.",
+              //  provider.getDisplayName()), Toast.LENGTH_LONG).show();
 
             // Load user name and image.
             AWSMobileClient.defaultMobileClient()
