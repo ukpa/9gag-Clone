@@ -130,13 +130,14 @@
     <orderEntry type="library" exported="" name="aws-android-sdk-s3-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="aws-android-sdk-cognito-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.3.0" level="project" />
+    <orderEntry type="library" exported="" name="glide-3.7.0" level="project" />
     <orderEntry type="library" exported="" name="aws-android-sdk-core-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="design-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-8.4.0" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="aws-android-sdk-ddb-mapper-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="aws-android-sdk-mobileanalytics-2.2.11" level="project" />
+    <orderEntry type="library" exported="" name="aws-android-sdk-ddb-mapper-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="aws-android-sdk-sns-2.2.11" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.3.0" level="project" />
     <orderEntry type="library" exported="" name="aws-android-sdk-ddb-2.2.11" level="project" />

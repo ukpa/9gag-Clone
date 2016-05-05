@@ -19,6 +19,7 @@ import com.amazonaws.mobile.content.ContentProgressListener;
 import com.amazonaws.mobile.content.UserFileManager;
 import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     @Override
                     public void onSuccess(ContentItem contentItem) {
                         holder.userPost.setScaleType(ImageView.ScaleType.FIT_XY);
-                        Picasso.with(context).load(contentItem.getFile()).into(holder.userPost);
+                        Glide.with(context).load(contentItem.getFile()).into(holder.userPost);
                     }
 
                     @Override

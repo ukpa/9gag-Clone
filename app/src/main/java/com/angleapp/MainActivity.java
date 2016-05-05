@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     PaginatedQueryList<Post> result;
     AWSMobileClient awsMobileClient;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -42,20 +44,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.mainSwipeRefreshLayout);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        refreshFeed();
         setSupportActionBar(toolbar);
         updatePermission();
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
         Snackbar.make(coordinatorLayout,"Signed in Successfully",Snackbar.LENGTH_LONG).show();
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
-        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
         this.getSupportActionBar().setTitle("Browse");
         mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    mAdapter = null;
+                    refreshFeed();
+
+                }
+            });
+        }
+
+
+    }
+
+    private void refreshFeed() {
         Post postToFind = new Post();
         postToFind.setUserId(Application.userId);
+        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
+        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
 
         final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
                 .withHashKeyValues(postToFind)
@@ -67,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 super.onPostExecute(result);
                 mAdapter = new PostAdapter(result,MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
                 Log.d("size of your ass",String.valueOf(result.size()));
+                swipeRefreshLayout.setRefreshing(false);
 
             }
 
@@ -81,16 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
         };
         asyncTask.execute();
-
-
-
-
-
-
-
-
-
     }
+
+
 
     private void updatePermission() {
         if (ContextCompat.checkSelfPermission(this,
