@@ -3,7 +3,6 @@ package com.angleapp;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.pdf.PdfDocument;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -21,10 +20,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.Manifest;
+import android.view.View;
 
-import com.amazonaws.mobile.AWSConfiguration;
 import com.amazonaws.mobile.AWSMobileClient;
-import com.amazonaws.mobile.content.UserFileManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     PaginatedQueryList<Post> result;
-    AWSMobileClient awsMobileClient;
     SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -47,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.mainSwipeRefreshLayout);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        refreshFeed();
         setSupportActionBar(toolbar);
         updatePermission();
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemViewCacheSize(100);
+        mRecyclerView.setItemViewCacheSize(40);
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -75,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
+        refreshFeed();
 
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -87,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MainActivity.this, UploadActivity.class),SUCCESSFULL_UPLOAD);
+
+            }
+        });
 
 
     }
@@ -141,24 +145,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.upload:
-                startActivityForResult(new Intent(this, UploadActivity.class),SUCCESSFULL_UPLOAD);
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
