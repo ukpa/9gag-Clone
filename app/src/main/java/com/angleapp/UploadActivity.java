@@ -64,7 +64,7 @@ public class UploadActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     final Post post = new Post();
-                    post.setAuthor("Unni");
+                    post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
                     post.setUserId(Application.userId);
                     post.setCategory(category.getText().toString());
                     final String extension = data_path.substring(data_path.lastIndexOf("."));

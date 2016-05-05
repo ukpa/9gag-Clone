@@ -3,29 +3,90 @@ package com.angleapp;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.pdf.PdfDocument;
+import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.Manifest;
 
+import com.amazonaws.mobile.AWSConfiguration;
+import com.amazonaws.mobile.AWSMobileClient;
+import com.amazonaws.mobile.content.UserFileManager;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+
 public class MainActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     static int SUCCESSFULL_UPLOAD=111;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    PaginatedQueryList<Post> result;
+    AWSMobileClient awsMobileClient;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         updatePermission();
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
         Snackbar.make(coordinatorLayout,"Signed in Successfully",Snackbar.LENGTH_LONG).show();
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
+        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
+        this.getSupportActionBar().setTitle("Browse");
+        mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        Post postToFind = new Post();
+        postToFind.setUserId(Application.userId);
+
+        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
+                .withHashKeyValues(postToFind)
+                .withConsistentRead(false)
+                .withLimit(20);
+        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
+            @Override
+            protected void onPostExecute(PaginatedQueryList<Post> result) {
+                super.onPostExecute(result);
+                mAdapter = new PostAdapter(result,MainActivity.this);
+                mRecyclerView.setAdapter(mAdapter);
+                Log.d("size of your ass",String.valueOf(result.size()));
+
+            }
+
+            @Override
+            protected PaginatedQueryList<Post> doInBackground(Void... params) {
+                result = dbMapper.query(Post.class, queryExpression);
+                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result.size()));
+                return result;
+            }
+
+
+        };
+        asyncTask.execute();
+
+
+
+
+
+
 
 
 
@@ -74,4 +135,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
