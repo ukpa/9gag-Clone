@@ -43,6 +43,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView createdAt;
         public ImageView userImage;
         public ImageView userPost;
+        public TextView votePost;
         public ViewHolder(View v) {
             super(v);
             title = (TextView)v.findViewById(R.id.cardpostTitle);
@@ -50,6 +51,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             username = (TextView)v.findViewById(R.id.cardPostUserName);
             createdAt = (TextView)v.findViewById(R.id.cardPostCreationTime);
             userPost = (ImageView)v.findViewById(R.id.cardPostImage);
+            votePost = (TextView)v.findViewById(R.id.cardPostVotes);
         }
     }
 
@@ -85,6 +87,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 DateUtils.MINUTE_IN_MILLIS,DateUtils.WEEK_IN_MILLIS,0);
         holder.createdAt.setText(String.valueOf(friendlyTime));
         Log.d("ashahsjahsjha",mDataset.get(position).getContent());
+        holder.votePost.setText(String.valueOf(mDataset.get(position).getVotes()));
         holder.userImage.setImageBitmap(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserImage());
         awsMobileClient.createUserFileManager(AWSConfiguration.AMAZON_S3_USER_FILES_BUCKET, "public/", new UserFileManager.BuilderResultHandler() {
             @Override
