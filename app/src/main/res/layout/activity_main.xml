@@ -4,20 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
     tools:context="com.angleapp.MainActivity"
-    android:id="@+id/mainCoordinator">
+    android:id="@+id/mainCoordinator"
+    android:background="#ffff">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainSwipeRefreshLayout"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         >
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mainRecyclerView"
-            android:padding="10dp">
+            android:padding="5dp">
 
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
@@ -38,4 +40,16 @@
             android:layout_height="?actionBarSize">
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:src="@mipmap/ic_add"
+        app:fab_type="normal"
+        fab:fab_colorNormal="@color/primary"
+        fab:fab_colorPressed="@color/primary_pressed"
+        fab:fab_colorRipple="@color/ripple" />
 </android.support.design.widget.CoordinatorLayout>

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.graphics.pdf.PdfDocument;
 import android.os.AsyncTask;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -56,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemViewCacheSize(100);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 && fab.isShown()||dy < 0 && fab.isShown())
+                    fab.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                if (newState ==  RecyclerView.SCROLL_STATE_IDLE) {
+                    fab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
         if (swipeRefreshLayout != null) {
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -66,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
 
 
     }
@@ -86,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                 super.onPostExecute(result);
                 mAdapter = new PostAdapter(result,MainActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
                 Log.d("size of your ass",String.valueOf(result.size()));
                 swipeRefreshLayout.setRefreshing(false);
 
