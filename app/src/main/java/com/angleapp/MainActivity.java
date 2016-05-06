@@ -27,13 +27,15 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
 
+import java.util.ConcurrentModificationException;
+
 public class MainActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     static int SUCCESSFULL_UPLOAD=111;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    PaginatedQueryList<Post> result;
+    PaginatedQueryList<Post> result1;
     SwipeRefreshLayout swipeRefreshLayout;
 
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemViewCacheSize(40);
-        mAdapter = new PostAdapter(result,this);
+        mAdapter = new PostAdapter(result1,this);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -74,16 +76,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         refreshFeed();
+        try{
+            if (swipeRefreshLayout != null) {
+                swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        refreshFeed();
 
-        if (swipeRefreshLayout != null) {
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    refreshFeed();
-
-                }
-            });
+                    }
+                });
+            }
+        }catch (ConcurrentModificationException e){
+            e.printStackTrace();
         }
+
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(PaginatedQueryList<Post> result) {
                 super.onPostExecute(result);
                 mAdapter = new PostAdapter(result,MainActivity.this);
-                Log.d("size of your ass",String.valueOf(result.size()));
                 swipeRefreshLayout.setRefreshing(false);
                 mRecyclerView.swapAdapter(mAdapter,false);
 
@@ -120,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected PaginatedQueryList<Post> doInBackground(Void... params) {
-                result = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result.size()));
-                return result;
+                result1 = dbMapper.query(Post.class, queryExpression);
+                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
+                return result1;
             }
 
 

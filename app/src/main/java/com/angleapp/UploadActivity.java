@@ -110,6 +110,9 @@ public class UploadActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(ContentItem contentItem) {
                                     Log.d("uploaded fucker","done");
+                                    Intent intent=new Intent();
+                                    setResult(RESULT_OK,intent);
+                                    finish();
                                 }
 
                                 @Override
@@ -122,11 +125,17 @@ public class UploadActivity extends AppCompatActivity {
 
                                 }
                             });
-                            Intent intent=new Intent();
-                            setResult(RESULT_OK,intent);
-                            finish();
+
+
+
 
                             return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            super.onPostExecute(aVoid);
+
                         }
                     };
 
