@@ -1,6 +1,8 @@
 package com.angleapp;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -18,12 +20,18 @@ import com.amazonaws.mobile.content.ContentManager;
 import com.amazonaws.mobile.content.ContentProgressListener;
 import com.amazonaws.mobile.content.UserFileManager;
 import com.amazonaws.mobile.user.IdentityManager;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+import com.amazonaws.transform.VoidJsonUnmarshaller;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by unnikrishnanpatel on 05/05/16.
@@ -31,7 +39,7 @@ import java.util.ArrayList;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private PaginatedQueryList<Post> mDataset;
     AWSMobileClient awsMobileClient  = AWSMobileClient.defaultMobileClient();
-    UserFileManager mUserFileManager;
+    DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
     Context context;
 
     // Provide a reference to the views for each data item
@@ -45,6 +53,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public ImageView userImage;
         public SimpleDraweeView userPost;
         public TextView votePost;
+        public ImageView cardUpVote;
+        public ImageView cardDownVote;
         public ViewHolder(View v) {
             super(v);
             title = (TextView)v.findViewById(R.id.cardpostTitle);
@@ -53,6 +63,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             createdAt = (TextView)v.findViewById(R.id.cardPostCreationTime);
             userPost = (SimpleDraweeView) v.findViewById(R.id.cardPostImage);
             votePost = (TextView)v.findViewById(R.id.cardPostVotes);
+            cardUpVote = (ImageView)v.findViewById(R.id.cardUpVote);
         }
     }
 
@@ -81,14 +92,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+
+        if(mDataset.get(position).getVotes().contains(Application.userId)){
+            holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));
+        }
         holder.title.setText(mDataset.get(position).getTitle());
         holder.username.setText(mDataset.get(position).getAuthor());
         String friendlyTime = (String) DateUtils.getRelativeDateTimeString(context,
                 (long) mDataset.get(position).getCreationDate(),
                 DateUtils.MINUTE_IN_MILLIS,DateUtils.WEEK_IN_MILLIS,0);
         holder.createdAt.setText(String.valueOf(friendlyTime));
-        Log.d("ashahsjahsjha",mDataset.get(position).getContent());
-        holder.votePost.setText(String.valueOf(mDataset.get(position).getVotes()));
+        holder.votePost.setText(String.valueOf(mDataset.get(position).getVotes()==null?0:mDataset.get(position).getVotes().size()-1));
         holder.userImage.setImageBitmap(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserImage());
         awsMobileClient.createUserFileManager(AWSConfiguration.AMAZON_S3_USER_FILES_BUCKET, "public/", new UserFileManager.BuilderResultHandler() {
             @Override
@@ -110,8 +124,47 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                     }
                 });
+
             }
         });
+
+        holder.cardUpVote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Set votes = mDataset.get(position).getVotes()==null?new HashSet():mDataset.get(position).getVotes();
+                if(!votes.contains(Application.userId)){
+                    votes.add(Application.userId);
+                    holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));
+                    mDataset.get(position).setVotes(votes);
+                    holder.votePost.setText(String.valueOf(votes.size()-1));
+                    AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(Void... params) {
+                            dbMapper.save(mDataset.get(position));
+                            return null;
+                        }
+                    };
+                    asyncTask.execute();
+
+                }else if(votes.contains(Application.userId)){
+                    votes.remove(Application.userId);
+                    Log.d("ahsjahsjhajhsjahsj",String.valueOf(votes));
+                    holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart_outline));
+                    holder.votePost.setText(String.valueOf(votes.size()-1));
+                    mDataset.get(position).setVotes(votes);
+                    AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+                        @Override
+                        protected Void doInBackground(Void... params) {
+                            dbMapper.save(mDataset.get(position));
+                            return null;
+                        }
+                    };
+                    asyncTask.execute();
+
+                }
+            }
+        });
+
 
 
 

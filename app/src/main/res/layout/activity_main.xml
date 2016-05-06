@@ -9,17 +9,21 @@
     android:id="@+id/mainCoordinator"
     android:background="#ffff">
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainSwipeRefreshLayout"
-        android:layout_marginTop="60dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
         >
         <android.support.v7.widget.RecyclerView
+
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/mainRecyclerView"
-            android:padding="5dp">
+            >
 
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
@@ -29,16 +33,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="#ffffff"
         android:elevation="8dp"
+
         android:gravity="bottom">
 
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANGLE"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_gravity="center"
+                android:textSize="40sp"
+                />
+
         </android.support.v7.widget.Toolbar>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            android:background="#ffff"
+            app:tabGravity="fill"/>
+
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton

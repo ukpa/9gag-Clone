@@ -48,12 +48,14 @@ public class MainActivity extends AppCompatActivity {
         updatePermission();
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
         Snackbar.make(coordinatorLayout,"Signed in Successfully",Snackbar.LENGTH_LONG).show();
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        this.getSupportActionBar().setTitle("Browse");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //this.getSupportActionBar().setTitle("Browse");
         mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemViewCacheSize(40);
+        mAdapter = new PostAdapter(result,this);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -77,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    mAdapter = null;
                     refreshFeed();
 
                 }
@@ -110,10 +111,9 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(PaginatedQueryList<Post> result) {
                 super.onPostExecute(result);
                 mAdapter = new PostAdapter(result,MainActivity.this);
-                mRecyclerView.setAdapter(mAdapter);
                 Log.d("size of your ass",String.valueOf(result.size()));
                 swipeRefreshLayout.setRefreshing(false);
-                mAdapter.notifyDataSetChanged();
+                mRecyclerView.swapAdapter(mAdapter,false);
 
 
             }

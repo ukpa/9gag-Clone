@@ -73,4 +73,5 @@ dependencies {
 
     // For WebP support, without animations
     compile 'com.facebook.fresco:webpsupport:0.10.0'
+    compile 'com.anton46:collection-picker:1.0.2'
 }

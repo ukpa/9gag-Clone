@@ -24,12 +24,17 @@ import com.amazonaws.mobile.util.ImageSelectorUtils;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.System;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig;
+import com.anton46.collectionitempicker.CollectionPicker;
+import com.anton46.collectionitempicker.Item;
+import com.anton46.collectionitempicker.OnItemClickListener;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -58,6 +63,21 @@ public class UploadActivity extends AppCompatActivity {
             });
         }
 
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("item1", "Items 1"));
+        items.add(new Item("item2", "Items 1"));
+        items.add(new Item("item3", "Items 1"));
+        items.add(new Item("item4", "Items 1"));
+
+        CollectionPicker picker = (CollectionPicker) findViewById(R.id.collection_item_picker);
+        picker.setItems(items);
+        picker.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onClick(Item item, int position) {
+
+            }
+        });
+
         if (uploadButton != null) {
             uploadButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,6 +95,9 @@ public class UploadActivity extends AppCompatActivity {
                     Set<String> set = new HashSet<>();
                     set.add("a");
                     set.add("b");
+                    Set<String> votes = new HashSet<String>();
+                    votes.add("dummy_vote");
+                    post.setVotes(votes);
                     post.setKeywords(set);
                     final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
                     AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {

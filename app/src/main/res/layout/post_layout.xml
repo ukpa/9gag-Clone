@@ -95,14 +95,9 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@mipmap/thumb_up_outline"
+                    android:src="@mipmap/heart_outline"
                     android:layout_margin="10dp"
-                    />
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/thumb_down_outline"
-                    android:layout_margin="10dp"
+                    android:id="@+id/cardUpVote"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -110,6 +105,12 @@
                     android:id="@+id/cardPostVotes"
                     android:layout_margin="10dp"
                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="10dp"
+                    android:src="@mipmap/share"
+                    android:id="@+id/shareCardPost"/>
 
             </LinearLayout>
 

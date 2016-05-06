@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -37,6 +38,22 @@
         android:text="Upload"
         android:id="@+id/postUpload"
         android:layout_gravity="bottom"/>
+
+    <com.anton46.collectionitempicker.CollectionPicker
+        android:id="@+id/collection_item_picker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cp_addIcon="@android:drawable/ic_menu_add"
+        app:cp_cancelIcon="@android:drawable/ic_menu_close_clear_cancel"
+        app:cp_itemBackgroundNormal="@color/colorPrimary"
+        app:cp_itemBackgroundPressed="@color/colorAccent"
+        app:cp_itemMargin="5dp"
+        app:cp_textPaddingBottom="5dp"
+        app:cp_textPaddingLeft="10dp"
+        app:cp_textPaddingRight="10dp"
+        app:cp_textPaddingTop="5dp"
+        app:cp_simplified="false" />
 
 
 </LinearLayout>
