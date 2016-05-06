@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.push.PushManager;
 import com.amazonaws.mobile.user.IdentityManager;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 /**
  * Application class responsible for initializing singletons and other common components.
@@ -29,6 +30,7 @@ public class Application extends MultiDexApplication {
         Log.d(LOG_TAG, "Application.onCreate - Initializing application...");
         super.onCreate();
         initializeApplication();
+        Fresco.initialize(this);
         Log.d(LOG_TAG, "Application.onCreate - Application initialized OK");
     }
 

@@ -113,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 mRecyclerView.setAdapter(mAdapter);
                 Log.d("size of your ass",String.valueOf(result.size()));
                 swipeRefreshLayout.setRefreshing(false);
+                mAdapter.notifyDataSetChanged();
+
 
             }
 

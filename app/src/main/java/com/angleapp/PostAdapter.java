@@ -20,6 +20,7 @@ import com.amazonaws.mobile.content.UserFileManager;
 import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView username;
         public TextView createdAt;
         public ImageView userImage;
-        public ImageView userPost;
+        public SimpleDraweeView userPost;
         public TextView votePost;
         public ViewHolder(View v) {
             super(v);
@@ -50,7 +51,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             userImage = (ImageView)v.findViewById(R.id.cardPostUserImage);
             username = (TextView)v.findViewById(R.id.cardPostUserName);
             createdAt = (TextView)v.findViewById(R.id.cardPostCreationTime);
-            userPost = (ImageView)v.findViewById(R.id.cardPostImage);
+            userPost = (SimpleDraweeView) v.findViewById(R.id.cardPostImage);
             votePost = (TextView)v.findViewById(R.id.cardPostVotes);
         }
     }
