@@ -52,18 +52,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="6"
+            android:id="@+id/uploadRadio"
             android:gravity="center">
 
             <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Global"
+                android:id="@+id/uploadGlobal"
                 android:layout_weight="3"
+                android:checked="true"
                 />
             <RadioButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Local"
+                android:id="@+id/uploadLocal"
                 android:layout_weight="3"/>
         </RadioGroup>
         <EditText

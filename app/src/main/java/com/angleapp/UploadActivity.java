@@ -1,6 +1,8 @@
 package com.angleapp;
 
 import android.*;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,6 +24,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.amazonaws.mobile.AWSConfiguration;
@@ -57,6 +61,10 @@ public class UploadActivity extends AppCompatActivity {
     AWSMobileClient awsMobileClient= AWSMobileClient.defaultMobileClient();
     ProgressBar progressBar;
     EditText title;
+    RadioGroup uploadRadioGroup;
+    RadioButton uploadradioButton;
+    Set<String> keywords = new HashSet<>();
+    String content ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +73,7 @@ public class UploadActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        uploadRadioGroup = (RadioGroup)findViewById(R.id.uploadRadio);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setTitle("Post");
          title = (EditText)findViewById(R.id.postTitle);
@@ -87,64 +96,79 @@ public class UploadActivity extends AppCompatActivity {
         items.add(new Item("item10", "Timely"));
         items.add(new Item("item11", "Design"));
         items.add(new Item("item12", "NSFW"));
-
-
         CollectionPicker picker = (CollectionPicker) findViewById(R.id.collection_item_picker);
         picker.setItems(items);
         picker.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onClick(Item item, int position) {
+                keywords.add(item.text);
+
 
             }
         });
 
+
+
+
     }
 
     private void postData() {
+
+
         final Post post = new Post();
         post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
         post.setUserId(Application.userId);
-        // post.setCategory(category.getText().toString());
-        final String extension = data_path.substring(data_path.lastIndexOf("."));
-        final String content  = "fun_stuff/"+String.valueOf(UUID.randomUUID())+extension;
+
+        int selectedId = uploadRadioGroup.getCheckedRadioButtonId();
+        uploadradioButton = (RadioButton) findViewById(selectedId);
+        post.setCategory(uploadradioButton.getText().toString());
+        if(data_path==null){
+            content="";
+        }
+        else{
+            final String extension = data_path.substring(data_path.lastIndexOf("."));
+            content  = "fun_stuff/"+String.valueOf(UUID.randomUUID())+extension;
+        }
         post.setContent(content);
         post.setCreationDate(new Date().getTime());
         post.setTitle(title.getText().toString());
-        Set<String> set = new HashSet<>();
-        set.add("a");
-        set.add("b");
         Set<String> votes = new HashSet<String>();
         votes.add("dummy_vote");
+        keywords.add("dummy_keyword");
         post.setVotes(votes);
-        post.setKeywords(set);
+        post.setKeywords(keywords);
         final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
         AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 dbMapper.save(post);
-                File file = new File(data_path);
-                Log.d("FILE",String.valueOf(file));
-                userFileManager.uploadContent(file, content, new ContentProgressListener() {
-                    @Override
-                    public void onSuccess(ContentItem contentItem) {
-                        Log.d("uploaded fucker","done");
-                        Intent intent=new Intent();
-                        setResult(RESULT_OK,intent);
-                        finish();
-                    }
+                if(data_path!=null){
+                    File file = new File(data_path);
+                    Log.d("FILE",String.valueOf(file));
+                    userFileManager.uploadContent(file, content, new ContentProgressListener() {
+                        @Override
+                        public void onSuccess(ContentItem contentItem) {
+                            Log.d("uploaded fucker","done");
+                            Intent intent=new Intent();
+                            setResult(RESULT_OK,intent);
+                            finish();
+                        }
 
-                    @Override
-                    public void onProgressUpdate(String filePath, boolean isWaiting, long bytesCurrent, long bytesTotal) {
-                        progressBar.setMax((int) bytesTotal);
-                        progressBar.setProgress((int) bytesCurrent);
+                        @Override
+                        public void onProgressUpdate(String filePath, boolean isWaiting, long bytesCurrent, long bytesTotal) {
+                            progressBar.setMax((int) bytesTotal);
+                            progressBar.setProgress((int) bytesCurrent);
 
-                    }
+                        }
 
-                    @Override
-                    public void onError(String filePath, Exception ex) {
+                        @Override
+                        public void onError(String filePath, Exception ex) {
 
-                    }
-                });
+                        }
+                    });
+
+                }
+
 
 
 
@@ -203,11 +227,30 @@ public class UploadActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.uploadPost:
-                progressBar.setVisibility(View.VISIBLE);
-                postData();
+                if(data_path==null||title.getText().toString().matches("")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setIcon(R.mipmap.ic_add_alert_black_24dp).setTitle("Add Title and a GIF/Image.Let's make it viral");
+                    builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User clicked OK button
+                        }
+                    });
+                    builder.setNegativeButton("No, thanks", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    postData();
+                }
+
 
                 return true;
             case R.id.attach_file:
+                updatePermission();
                 startActivityForResult(ImageSelectorUtils.getImageSelectionIntent(),PICK_PICTURE_REQUEST);
 
                 return true;
