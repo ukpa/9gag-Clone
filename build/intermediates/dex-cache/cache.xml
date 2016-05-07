@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="45d4a37b1a5423d271ddb8302ec481c99bbbab77">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e0fd7b6a8b1cf206e66c9c64c8f1202633c34263/classes.dex" />
+    </item>
+
+</items>

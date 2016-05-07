@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +56,7 @@ public class UploadActivity extends AppCompatActivity {
     UserFileManager userFileManager;
     AWSMobileClient awsMobileClient= AWSMobileClient.defaultMobileClient();
     ProgressBar progressBar;
+    EditText title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,29 +66,28 @@ public class UploadActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //this.getSupportActionBar().setTitle("Browse");
-        final EditText title = (EditText)findViewById(R.id.postTitle);
-        final EditText category = (EditText)findViewById(R.id.postCategory);
+        this.getSupportActionBar().setTitle("Post");
+         title = (EditText)findViewById(R.id.postTitle);
+        //final EditText category = (EditText)findViewById(R.id.postCategory);
         imageView= (SimpleDraweeView) findViewById(R.id.postImage);
-        ImageView imageOrGif = (ImageView) findViewById(R.id.uploadData);
-        Button uploadButton  = (Button)findViewById(R.id.postUpload);
         progressBar = (ProgressBar)findViewById(R.id.uploadProgress);
         createUserFileManager();
-        if (imageOrGif != null) {
-            imageOrGif.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    updatePermission();
-                    startActivityForResult(ImageSelectorUtils.getImageSelectionIntent(),PICK_PICTURE_REQUEST);
-                }
-            });
-        }
+
 
         List<Item> items = new ArrayList<>();
-        items.add(new Item("item1", "Items 1"));
-        items.add(new Item("item2", "Items 1"));
-        items.add(new Item("item3", "Items 1"));
-        items.add(new Item("item4", "Items 1"));
+        items.add(new Item("item1", "Funny"));
+        items.add(new Item("item2", "WTF"));
+        items.add(new Item("item3", "Geeky"));
+        items.add(new Item("item4", "Meme"));
+        items.add(new Item("item5", "Cute"));
+        items.add(new Item("item6", "Comic"));
+        items.add(new Item("item7", "Cosplay"));
+        items.add(new Item("item8", "Food"));
+        items.add(new Item("item9", "Girl"));
+        items.add(new Item("item10", "Timely"));
+        items.add(new Item("item11", "Design"));
+        items.add(new Item("item12", "NSFW"));
+
 
         CollectionPicker picker = (CollectionPicker) findViewById(R.id.collection_item_picker);
         picker.setItems(items);
@@ -95,76 +98,68 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
-        if (uploadButton != null) {
-            uploadButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+    }
 
+    private void postData() {
+        final Post post = new Post();
+        post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
+        post.setUserId(Application.userId);
+        // post.setCategory(category.getText().toString());
+        final String extension = data_path.substring(data_path.lastIndexOf("."));
+        final String content  = "fun_stuff/"+String.valueOf(UUID.randomUUID())+extension;
+        post.setContent(content);
+        post.setCreationDate(new Date().getTime());
+        post.setTitle(title.getText().toString());
+        Set<String> set = new HashSet<>();
+        set.add("a");
+        set.add("b");
+        Set<String> votes = new HashSet<String>();
+        votes.add("dummy_vote");
+        post.setVotes(votes);
+        post.setKeywords(set);
+        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
+        AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                dbMapper.save(post);
+                File file = new File(data_path);
+                Log.d("FILE",String.valueOf(file));
+                userFileManager.uploadContent(file, content, new ContentProgressListener() {
+                    @Override
+                    public void onSuccess(ContentItem contentItem) {
+                        Log.d("uploaded fucker","done");
+                        Intent intent=new Intent();
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }
 
-                    final Post post = new Post();
-                    post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
-                    post.setUserId(Application.userId);
-                    post.setCategory(category.getText().toString());
-                    final String extension = data_path.substring(data_path.lastIndexOf("."));
-                    final String content  = "fun_stuff/"+String.valueOf(UUID.randomUUID())+extension;
-                    post.setContent(content);
-                    post.setCreationDate(new Date().getTime());
-                    post.setTitle(title.getText().toString());
-                    Set<String> set = new HashSet<>();
-                    set.add("a");
-                    set.add("b");
-                    Set<String> votes = new HashSet<String>();
-                    votes.add("dummy_vote");
-                    post.setVotes(votes);
-                    post.setKeywords(set);
-                    final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-                    AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-                        @Override
-                        protected Void doInBackground(Void... params) {
-                            dbMapper.save(post);
-                            File file = new File(data_path);
-                            Log.d("FILE",String.valueOf(file));
-                            userFileManager.uploadContent(file, content, new ContentProgressListener() {
-                                @Override
-                                public void onSuccess(ContentItem contentItem) {
-                                    Log.d("uploaded fucker","done");
-                                    Intent intent=new Intent();
-                                    setResult(RESULT_OK,intent);
-                                    finish();
-                                }
+                    @Override
+                    public void onProgressUpdate(String filePath, boolean isWaiting, long bytesCurrent, long bytesTotal) {
+                        progressBar.setMax((int) bytesTotal);
+                        progressBar.setProgress((int) bytesCurrent);
 
-                                @Override
-                                public void onProgressUpdate(String filePath, boolean isWaiting, long bytesCurrent, long bytesTotal) {
-                                    progressBar.setMax((int) bytesTotal);
-                                    progressBar.setProgress((int) bytesCurrent);
+                    }
 
-                                }
+                    @Override
+                    public void onError(String filePath, Exception ex) {
 
-                                @Override
-                                public void onError(String filePath, Exception ex) {
-
-                                }
-                            });
+                    }
+                });
 
 
 
 
-                            return null;
-                        }
+                return null;
+            }
 
-                        @Override
-                        protected void onPostExecute(Void aVoid) {
-                            super.onPostExecute(aVoid);
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
 
-                        }
-                    };
+            }
+        };
 
-                    asyncTask.execute();
-
-                }
-            });
-        }
-
+        asyncTask.execute();
     }
 
     private void createUserFileManager() {
@@ -193,6 +188,32 @@ public class UploadActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.upload_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.uploadPost:
+                progressBar.setVisibility(View.VISIBLE);
+                postData();
+
+                return true;
+            case R.id.attach_file:
+                startActivityForResult(ImageSelectorUtils.getImageSelectionIntent(),PICK_PICTURE_REQUEST);
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     private void updatePermission() {
         if (ContextCompat.checkSelfPermission(this,
