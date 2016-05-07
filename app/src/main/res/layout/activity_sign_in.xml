@@ -13,7 +13,7 @@
         >
     <ImageButton
         android:id="@+id/g_login_button"
-        android:src="@drawable/selector_button_google"
+        android:src="@mipmap/btn_google_signin_dark_normal_xxhdpi"
         android:layout_width="@dimen/sign_in_button_width"
         android:layout_height="@dimen/sign_in_button_height"
         android:layout_marginTop="@dimen/sign_in_button_margin"

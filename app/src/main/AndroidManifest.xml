@@ -119,7 +119,7 @@
         <!-- END - PUSH NOTIFICATIONS WITH GOOGLE CLOUD MESSAGING (GCM) -->
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".UploadActivity"></activity>
+        <activity android:name=".UploadActivity" android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

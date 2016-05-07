@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="false"
-          android:drawable="@mipmap/button_google"/>
+          android:drawable="@mipmap/btn_google_signin_dark_normal_xxhdpi"/>
     <item android:state_pressed="true"
-        android:drawable="@mipmap/button_google_pressed"/>
+        android:drawable="@mipmap/btn_google_signin_dark_pressed_xxhdpi"/>
+    <item android:state_focused="true"
+        android:drawable="@mipmap/btn_google_signin_dark_focus_xxhdpi"/>
 </selector>

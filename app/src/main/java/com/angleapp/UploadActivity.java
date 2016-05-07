@@ -1,17 +1,24 @@
 package com.angleapp;
 
+import android.*;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.amazonaws.mobile.AWSConfiguration;
@@ -27,6 +34,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperCo
 import com.anton46.collectionitempicker.CollectionPicker;
 import com.anton46.collectionitempicker.Item;
 import com.anton46.collectionitempicker.OnItemClickListener;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,23 +49,32 @@ import java.util.UUID;
 public class UploadActivity extends AppCompatActivity {
     static final int PICK_PICTURE_REQUEST = 1111;
     String data_path;
-    ImageView imageView;
+    SimpleDraweeView imageView;
     UserFileManager userFileManager;
     AWSMobileClient awsMobileClient= AWSMobileClient.defaultMobileClient();
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_upload);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //this.getSupportActionBar().setTitle("Browse");
         final EditText title = (EditText)findViewById(R.id.postTitle);
         final EditText category = (EditText)findViewById(R.id.postCategory);
-        imageView= (ImageView)findViewById(R.id.postImage);
-        Button imageOrGif = (Button)findViewById(R.id.uploadData);
+        imageView= (SimpleDraweeView) findViewById(R.id.postImage);
+        ImageView imageOrGif = (ImageView) findViewById(R.id.uploadData);
         Button uploadButton  = (Button)findViewById(R.id.postUpload);
+        progressBar = (ProgressBar)findViewById(R.id.uploadProgress);
         createUserFileManager();
         if (imageOrGif != null) {
             imageOrGif.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    updatePermission();
                     startActivityForResult(ImageSelectorUtils.getImageSelectionIntent(),PICK_PICTURE_REQUEST);
                 }
             });
@@ -82,6 +99,7 @@ public class UploadActivity extends AppCompatActivity {
             uploadButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
 
                     final Post post = new Post();
                     post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
@@ -117,6 +135,8 @@ public class UploadActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onProgressUpdate(String filePath, boolean isWaiting, long bytesCurrent, long bytesTotal) {
+                                    progressBar.setMax((int) bytesTotal);
+                                    progressBar.setProgress((int) bytesCurrent);
 
                                 }
 
@@ -173,6 +193,19 @@ public class UploadActivity extends AppCompatActivity {
             }
         }
 
+    }
+    private void updatePermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        10);
+            }
+        }
     }
 
 

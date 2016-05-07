@@ -48,7 +48,8 @@
             android:layout_height="wrap_content"
             app:tabMode="fixed"
             android:background="#ffff"
-            app:tabGravity="fill"/>
+            app:tabGravity="fill"
+            />
 
 
 
@@ -64,8 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
-        android:src="@mipmap/ic_add"
-        app:fab_type="normal"
+        android:src="@mipmap/ic_add_box"
+        app:fab_type="mini"
         fab:fab_colorNormal="@color/primary"
         fab:fab_colorPressed="@color/primary_pressed"
         fab:fab_colorRipple="@color/ripple" />
