@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    static FloatingActionButton fab;
 
 
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.mainSwipeRefreshLayout);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         updatePermission();
@@ -58,53 +59,21 @@ public class MainActivity extends AppCompatActivity {
         Snackbar.make(coordinatorLayout,"Signed in Successfully",Snackbar.LENGTH_LONG).show();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         //this.getSupportActionBar().setTitle("Browse");
-        mRecyclerView = (RecyclerView)findViewById(R.id.mainRecyclerView);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+          fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        mAdapter = new PostAdapter(result1,this);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 && fab.isShown()||dy < 0 && fab.isShown())
-                    fab.hide();
-            }
 
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivityForResult(new Intent(MainActivity.this, UploadActivity.class),SUCCESSFULL_UPLOAD);
 
-                if (newState ==  RecyclerView.SCROLL_STATE_IDLE) {
-                    fab.show();
                 }
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
-        refreshFeed();
-        try{
-            if (swipeRefreshLayout != null) {
-                swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        refreshFeed();
-
-                    }
-                });
-            }
-        }catch (ConcurrentModificationException e){
-            e.printStackTrace();
+            });
         }
 
 
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(MainActivity.this, UploadActivity.class),SUCCESSFULL_UPLOAD);
-
-            }
-        });
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -153,39 +122,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshFeed() {
-        Post postToFind = new Post();
-        postToFind.setUserId(Application.userId);
-        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
-        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-
-        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                .withHashKeyValues(postToFind)
-                .withConsistentRead(true)
-                .withLimit(20);
-        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
-            @Override
-            protected void onPostExecute(PaginatedQueryList<Post> result) {
-                super.onPostExecute(result);
-                mAdapter = new PostAdapter(result,MainActivity.this);
-                swipeRefreshLayout.setRefreshing(false);
-                mRecyclerView.swapAdapter(mAdapter,false);
-                mRecyclerView.setItemViewCacheSize(10);
-
-
-            }
-
-            @Override
-            protected PaginatedQueryList<Post> doInBackground(Void... params) {
-                result1 = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
-                return result1;
-            }
-
-
-        };
-        asyncTask.execute();
-    }
 
 
 

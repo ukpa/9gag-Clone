@@ -10,23 +10,7 @@
     android:background="#ffff">
 
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mainSwipeRefreshLayout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
-        >
-        <android.support.v7.widget.RecyclerView
-
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/mainRecyclerView"
-            >
-
-        </android.support.v7.widget.RecyclerView>
-    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_container"
@@ -74,7 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -86,4 +69,5 @@
         fab:fab_colorNormal="@color/primary"
         fab:fab_colorPressed="@color/primary_pressed"
         fab:fab_colorRipple="@color/ripple" />
+
 </android.support.design.widget.CoordinatorLayout>

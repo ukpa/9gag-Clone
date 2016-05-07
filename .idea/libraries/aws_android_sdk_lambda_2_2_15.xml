@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="aws-android-sdk-lambda-2.2.15">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-lambda/2.2.15/dd029b4fa567da99ce2178fc1ac73824fcfb6928/aws-android-sdk-lambda-2.2.15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-lambda/2.2.15/3f74b55aba91c16787818deed7222e347d57de7f/aws-android-sdk-lambda-2.2.15-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
