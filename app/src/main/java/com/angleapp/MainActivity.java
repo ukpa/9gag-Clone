@@ -133,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-
-
-
-
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

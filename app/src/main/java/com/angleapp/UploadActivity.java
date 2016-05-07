@@ -127,7 +127,7 @@ public class UploadActivity extends AppCompatActivity {
         }
         else{
             final String extension = data_path.substring(data_path.lastIndexOf("."));
-            content  = "fun_stuff/"+String.valueOf(UUID.randomUUID())+extension;
+            content  = String.valueOf(UUID.randomUUID())+extension;
         }
         post.setContent(content);
         post.setCreationDate(new Date().getTime());

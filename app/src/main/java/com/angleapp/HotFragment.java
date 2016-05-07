@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.amazonaws.mobile.AWSMobileClient;
+import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
@@ -36,7 +37,6 @@ public class HotFragment extends Fragment {
     public HotFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +67,7 @@ public class HotFragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
-        refreshFeed();
+        initRefreshFeed();
         try{
             if (swipeRefreshLayout != null) {
                 swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -84,8 +84,6 @@ public class HotFragment extends Fragment {
 
         return v;
     }
-
-
     private void refreshFeed() {
         Post postToFind = new Post();
         postToFind.setUserId(Application.userId);
@@ -119,6 +117,59 @@ public class HotFragment extends Fragment {
         };
         asyncTask.execute();
     }
+
+
+    private void initRefreshFeed() {
+        AWSMobileClient
+                .defaultMobileClient()
+                .getIdentityManager()
+                .getUserID(new IdentityManager.IdentityHandler() {
+                    @Override
+                    public void handleIdentityID(final String identityId) {
+                        Post postToFind = new Post();
+                        postToFind.setUserId(identityId);
+                        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
+                        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
+
+                        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
+                                .withHashKeyValues(postToFind)
+                                .withConsistentRead(true)
+                                .withLimit(20);
+                        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
+                            @Override
+                            protected void onPostExecute(PaginatedQueryList<Post> result) {
+                                super.onPostExecute(result);
+                                mAdapter = new PostAdapter(result,getActivity());
+                                swipeRefreshLayout.setRefreshing(false);
+                                mRecyclerView.swapAdapter(mAdapter,false);
+
+
+
+                            }
+
+                            @Override
+                            protected PaginatedQueryList<Post> doInBackground(Void... params) {
+                                result1 = dbMapper.query(Post.class, queryExpression);
+                                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
+                                return result1;
+                            }
+
+
+                        };
+                        asyncTask.execute();
+
+                    }
+
+                    @Override
+                    public void handleError(final Exception exception) {
+                        // This should never happen since the Identity ID is retrieved
+                        // when the Application starts.
+
+                    }
+                });
+
+    }
+
 
 }
 
