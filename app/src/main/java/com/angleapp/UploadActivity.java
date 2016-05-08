@@ -34,10 +34,12 @@ import com.amazonaws.mobile.content.ContentItem;
 import com.amazonaws.mobile.content.ContentManager;
 import com.amazonaws.mobile.content.ContentProgressListener;
 import com.amazonaws.mobile.content.UserFileManager;
+import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobile.util.ImageSelectorUtils;
 import com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.system.System;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapperConfig;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMappingException;
 import com.anton46.collectionitempicker.CollectionPicker;
 import com.anton46.collectionitempicker.Item;
 import com.anton46.collectionitempicker.OnItemClickListener;
@@ -65,6 +67,7 @@ public class UploadActivity extends AppCompatActivity {
     RadioButton uploadradioButton;
     Set<String> keywords = new HashSet<>();
     String content ="";
+    Post post = new Post();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +84,7 @@ public class UploadActivity extends AppCompatActivity {
         imageView= (SimpleDraweeView) findViewById(R.id.postImage);
         progressBar = (ProgressBar)findViewById(R.id.uploadProgress);
         createUserFileManager();
+
 
 
         List<Item> items = new ArrayList<>();
@@ -113,12 +117,8 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     private void postData() {
-
-
-        final Post post = new Post();
-        post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
+        post = new Post();
         post.setUserId(Application.userId);
-
         int selectedId = uploadRadioGroup.getCheckedRadioButtonId();
         uploadradioButton = (RadioButton) findViewById(selectedId);
         post.setCategory(uploadradioButton.getText().toString());
@@ -129,6 +129,7 @@ public class UploadActivity extends AppCompatActivity {
             final String extension = data_path.substring(data_path.lastIndexOf("."));
             content  = String.valueOf(UUID.randomUUID())+extension;
         }
+        post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
         post.setContent(content);
         post.setCreationDate(new Date().getTime());
         post.setTitle(title.getText().toString());
@@ -227,7 +228,7 @@ public class UploadActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.uploadPost:
-                if(data_path==null||title.getText().toString().matches("")){
+                if(data_path==null||title.getText().toString().matches("")||Application.userId==null){
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setIcon(R.mipmap.ic_add_alert_black_24dp).setTitle("Add Title and a GIF/Image.Let's make it viral");
                     builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -243,8 +244,13 @@ public class UploadActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }else {
-                    progressBar.setVisibility(View.VISIBLE);
-                    postData();
+                    try{
+                        progressBar.setVisibility(View.VISIBLE);
+                        postData();
+                    }catch (DynamoDBMappingException e){
+                        e.printStackTrace();
+                    }
+
                 }
 
 
@@ -258,6 +264,7 @@ public class UploadActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void updatePermission() {
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE)

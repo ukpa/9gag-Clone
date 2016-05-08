@@ -25,6 +25,8 @@ import android.Manifest;
 import android.view.View;
 
 import com.amazonaws.mobile.AWSMobileClient;
+import com.amazonaws.mobile.content.ContentManager;
+import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
@@ -36,11 +38,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     static int SUCCESSFULL_UPLOAD=111;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    PaginatedQueryList<Post> result1;
-    SwipeRefreshLayout swipeRefreshLayout;
+    AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
+    ContentManager contentManager;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     static FloatingActionButton fab;
@@ -76,6 +75,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        AWSMobileClient
+                .defaultMobileClient()
+                .getIdentityManager()
+                .getUserID(new IdentityManager.IdentityHandler() {
+                    @Override
+                    public void handleIdentityID(final String identityId) {
+
+                        Application.userId = identityId;
+                        Log.d("fuck yes","done");
+                    }
+
+                    @Override
+                    public void handleError(final Exception exception) {
+                        // This should never happen since the Identity ID is retrieved
+                        // when the Application starts.
+
+                    }
+                });
 
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -84,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+        awsMobileClient.createDefaultContentManager(new ContentManager.BuilderResultHandler() {
+            @Override
+            public void onComplete(ContentManager contentManager) {
+                MainActivity.this.contentManager = contentManager;
+            }
+        });
+
 
 
     }
@@ -136,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        contentManager.clearCache();
+
+
 
     }
 
@@ -148,5 +176,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }

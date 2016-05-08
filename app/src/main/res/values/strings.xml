@@ -5,10 +5,10 @@
     <string name="app_name">Angle</string>
     <!-- Suffix after '-' must be the app package name as specified in the build.gradle file. This
        is used by the com.amazonaws.mobile.downloader.query.DownloadQueueProvider class. -->
-    <string name="download_queue_provider_authority">com.amazonaws.mobile.downloader-com.amazon.mysampleapp</string>
+    <string name="download_queue_provider_authority">com.amazonaws.mobile.downloader-com.angleapp</string>
     <!-- This can be anything, but it should be unique to the app. -->
-    <string name="content_file_provider_authority">com.mysampleapp.fileprovider</string>
-    <string name="google_cloud_messaging_package">com.mysampleapp</string>
+    <string name="content_file_provider_authority">com.angleapp.fileprovider</string>
+    <string name="google_cloud_messaging_package">com.angleapp</string>
 
     <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 

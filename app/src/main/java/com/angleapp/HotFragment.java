@@ -73,7 +73,7 @@ public class HotFragment extends Fragment {
                 swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        refreshFeed();
+                        initRefreshFeed();
 
                     }
                 });

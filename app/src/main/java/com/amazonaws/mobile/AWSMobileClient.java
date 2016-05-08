@@ -367,7 +367,7 @@ public class AWSMobileClient {
      * was selected).
      * @param resultHandler handles the resulting ContentManager instance
      */
-    public void createDefaultContentManager(final ContentManager.BuilderResultHandler resultHandler) {
+    public ContentManager createDefaultContentManager(final ContentManager.BuilderResultHandler resultHandler) {
         new ContentManager.Builder()
             .withContext(context)
             .withIdentityManager(identityManager)
@@ -376,5 +376,6 @@ public class AWSMobileClient {
             .withCloudFrontDomainName(AWSConfiguration.AMAZON_CLOUD_FRONT_DISTRIBUTION_DOMAIN)
             .withClientConfiguration(clientConfiguration)
             .build(resultHandler);
+        return null;
     }
 }

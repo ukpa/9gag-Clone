@@ -34,7 +34,7 @@ public class Application extends MultiDexApplication {
         Log.d(LOG_TAG, "Application.onCreate - Application initialized OK");
     }
 
-    private void initializeApplication() {
+    public void initializeApplication() {
         AWSMobileClient.initializeMobileClientIfNecessary(getApplicationContext());
 
         // Set a listener for changes in push notification state
@@ -51,6 +51,7 @@ public class Application extends MultiDexApplication {
                 .getUserID(new IdentityManager.IdentityHandler() {
                     @Override
                     public void handleIdentityID(final String identityId) {
+                        Log.d(LOG_TAG, "DONEGG");
                         userId = identityId;
                     }
 
@@ -58,6 +59,7 @@ public class Application extends MultiDexApplication {
                     public void handleError(final Exception exception) {
                         // This should never happen since the Identity ID is retrieved
                         // when the Application starts.
+                        Log.d(LOG_TAG, "WTF MOFO");
                         userId = null;
                     }
                 });

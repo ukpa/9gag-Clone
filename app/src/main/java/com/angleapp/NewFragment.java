@@ -76,7 +76,7 @@ public class NewFragment extends Fragment {
                 swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-                        refreshFeed();
+                        initRefreshFeed();
 
                     }
                 });
