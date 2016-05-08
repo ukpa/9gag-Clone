@@ -71,7 +71,6 @@ public class PushListenerService extends GcmListenerService {
         // opens the app when the notification is clicked.
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this).setSmallIcon(
                 R.mipmap.push)
-                .setContentTitle(getString(R.string.push_demo_title))
                 .setContentText(message)
                 .setDefaults(Notification.DEFAULT_SOUND)
                 .setAutoCancel(true)
