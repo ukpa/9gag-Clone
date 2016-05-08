@@ -15,11 +15,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amazonaws.auth.CognitoCredentialsProvider;
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
 
 import java.util.ConcurrentModificationException;
 
@@ -32,8 +35,9 @@ public class NewFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    PaginatedQueryList<Post> result1;
+    PaginatedScanList<Post> result1;
     SwipeRefreshLayout swipeRefreshLayout;
+
 
 
     public NewFragment() {
@@ -52,7 +56,7 @@ public class NewFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemViewCacheSize(20);
 
-        mAdapter = new PostAdapter(result1,getActivity());
+        mAdapter = new PostScanAdapter(result1,getActivity());
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -84,43 +88,8 @@ public class NewFragment extends Fragment {
         }catch (ConcurrentModificationException e){
             e.printStackTrace();
         }
-
         return v;
     }
-    private void refreshFeed() {
-        Post postToFind = new Post();
-        postToFind.setUserId(Application.userId);
-        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
-        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-
-        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                .withHashKeyValues(postToFind)
-                .withConsistentRead(true)
-                .withLimit(20);
-        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
-            @Override
-            protected void onPostExecute(PaginatedQueryList<Post> result) {
-                super.onPostExecute(result);
-                mAdapter = new PostAdapter(result,getActivity());
-                swipeRefreshLayout.setRefreshing(false);
-                mRecyclerView.swapAdapter(mAdapter,false);
-
-
-
-            }
-
-            @Override
-            protected PaginatedQueryList<Post> doInBackground(Void... params) {
-                result1 = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
-                return result1;
-            }
-
-
-        };
-        asyncTask.execute();
-    }
-
 
     private void initRefreshFeed() {
         AWSMobileClient
@@ -133,16 +102,12 @@ public class NewFragment extends Fragment {
                         postToFind.setUserId(identityId);
                         AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
                         final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-
-                        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                                .withHashKeyValues(postToFind)
-                                .withConsistentRead(true)
-                                .withLimit(20);
-                        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
+                        final DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+                        AsyncTask<Void,Void,PaginatedScanList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedScanList<Post>>() {
                             @Override
-                            protected void onPostExecute(PaginatedQueryList<Post> result) {
+                            protected void onPostExecute(PaginatedScanList<Post> result) {
                                 super.onPostExecute(result);
-                                mAdapter = new PostAdapter(result,getActivity());
+                                mAdapter = new PostScanAdapter(result,getActivity());
                                 swipeRefreshLayout.setRefreshing(false);
                                 mRecyclerView.swapAdapter(mAdapter,false);
 
@@ -151,8 +116,8 @@ public class NewFragment extends Fragment {
                             }
 
                             @Override
-                            protected PaginatedQueryList<Post> doInBackground(Void... params) {
-                                result1 = dbMapper.query(Post.class, queryExpression);
+                            protected PaginatedScanList<Post> doInBackground(Void... params) {
+                                result1 = dbMapper.scan(Post.class, scanExpression);
                                 Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
                                 return result1;
                             }

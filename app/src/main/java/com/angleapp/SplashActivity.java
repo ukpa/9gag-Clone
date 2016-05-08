@@ -33,6 +33,7 @@ public class SplashActivity extends Activity {
     private final static String LOG_TAG = SplashActivity.class.getSimpleName();
     private final CountDownLatch timeoutLatch = new CountDownLatch(1);
     private SignInManager signInManager;
+    static String userImageUrl;
 
     /**
      * SignInResultsHandler handles the results from sign-in for a previously signed in user.
@@ -59,6 +60,7 @@ public class SplashActivity extends Activity {
                 .loadUserInfoAndImage(provider, new Runnable() {
                     @Override
                     public void run() {
+                        userImageUrl = provider.getUserImageUrl();
                         goMain();
                     }
                 });
@@ -101,7 +103,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout)findViewById(R.id.splashCoordinator);
-        Snackbar.make(coordinatorLayout,"Welcome to Angel App, loads of fun awaits!",Snackbar.LENGTH_LONG).show();
+        Snackbar.make(coordinatorLayout,"Welcome to Angle App, loads of fun awaits!",Snackbar.LENGTH_LONG).show();
 
         final Thread thread = new Thread(new Runnable() {
             public void run() {

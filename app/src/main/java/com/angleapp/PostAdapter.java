@@ -103,7 +103,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 DateUtils.MINUTE_IN_MILLIS,DateUtils.WEEK_IN_MILLIS,0);
         holder.createdAt.setText(String.valueOf(friendlyTime));
         holder.votePost.setText(String.valueOf(mDataset.get(position).getVotes()==null?0:mDataset.get(position).getVotes().size()-1));
-        holder.userImage.setImageBitmap(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserImage());
+        Glide.with(context).load(mDataset.get(position).getUserImage()).into(holder.userImage);
         awsMobileClient.createUserFileManager(AWSConfiguration.AMAZON_S3_USER_FILES_BUCKET, "public/", new UserFileManager.BuilderResultHandler() {
             @Override
             public void onComplete(UserFileManager userFileManager) {

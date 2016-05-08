@@ -23,6 +23,7 @@ import com.amazonaws.mobile.user.signin.GoogleSignInProvider;
 public class SignInActivity extends Activity {
     private final static String LOG_TAG = SignInActivity.class.getSimpleName();
     private SignInManager signInManager;
+    static String userImageUrl;
 
     /** Permission Request Code (Must be < 256). */
     private static final int GET_ACCOUNTS_PERMISSION_REQUEST_CODE = 93;
@@ -56,6 +57,7 @@ public class SignInActivity extends Activity {
                 @Override
                 public void run() {
                     Log.d(LOG_TAG, "Launching Main Activity...");
+                    userImageUrl=provider.getUserImageUrl();
                     startActivity(new Intent(SignInActivity.this, MainActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                     // finish should always be called on the main thread.

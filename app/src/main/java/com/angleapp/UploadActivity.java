@@ -65,7 +65,7 @@ public class UploadActivity extends AppCompatActivity {
     EditText title;
     RadioGroup uploadRadioGroup;
     RadioButton uploadradioButton;
-    Set<String> keywords = new HashSet<>();
+    String keywords = "";
     String content ="";
     Post post = new Post();
     @Override
@@ -84,6 +84,7 @@ public class UploadActivity extends AppCompatActivity {
         imageView= (SimpleDraweeView) findViewById(R.id.postImage);
         progressBar = (ProgressBar)findViewById(R.id.uploadProgress);
         createUserFileManager();
+       Log.d("ahsjahsjahshajhs",SignInActivity.userImageUrl==null?SplashActivity.userImageUrl:SignInActivity.userImageUrl);
 
 
 
@@ -100,12 +101,13 @@ public class UploadActivity extends AppCompatActivity {
         items.add(new Item("item10", "Timely"));
         items.add(new Item("item11", "Design"));
         items.add(new Item("item12", "NSFW"));
-        CollectionPicker picker = (CollectionPicker) findViewById(R.id.collection_item_picker);
+        final CollectionPicker picker = (CollectionPicker) findViewById(R.id.collection_item_picker);
         picker.setItems(items);
         picker.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onClick(Item item, int position) {
-                keywords.add(item.text);
+                keywords = item.text;
+                getSupportActionBar().setTitle("Post / "+item.text);
 
 
             }
@@ -121,6 +123,7 @@ public class UploadActivity extends AppCompatActivity {
         post.setUserId(Application.userId);
         int selectedId = uploadRadioGroup.getCheckedRadioButtonId();
         uploadradioButton = (RadioButton) findViewById(selectedId);
+
         post.setCategory(uploadradioButton.getText().toString());
         if(data_path==null){
             content="";
@@ -129,15 +132,15 @@ public class UploadActivity extends AppCompatActivity {
             final String extension = data_path.substring(data_path.lastIndexOf("."));
             content  = String.valueOf(UUID.randomUUID())+extension;
         }
+        post.setUserImage(SignInActivity.userImageUrl==null?SplashActivity.userImageUrl:SignInActivity.userImageUrl);
         post.setAuthor(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
         post.setContent(content);
         post.setCreationDate(new Date().getTime());
         post.setTitle(title.getText().toString());
         Set<String> votes = new HashSet<String>();
         votes.add("dummy_vote");
-        keywords.add("dummy_keyword");
         post.setVotes(votes);
-        post.setKeywords(keywords);
+        post.setKeyword(keywords);
         final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
         AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
             @Override

@@ -53,6 +53,7 @@ public class Application extends MultiDexApplication {
                     public void handleIdentityID(final String identityId) {
                         Log.d(LOG_TAG, "DONEGG");
                         userId = identityId;
+
                     }
 
                     @Override
