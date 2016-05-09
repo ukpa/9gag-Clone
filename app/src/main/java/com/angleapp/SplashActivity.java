@@ -52,8 +52,8 @@ public class SplashActivity extends Activity {
             // The sign-in manager is no longer needed once signed in.
             SignInManager.dispose();
 
-            Toast.makeText(SplashActivity.this, String.format("Sign-in with %s succeeded.",
-                provider.getDisplayName()), Toast.LENGTH_LONG).show();
+            //Toast.makeText(SplashActivity.this, String.format("Sign-in with %s succeeded.",
+              //  provider.getDisplayName()), Toast.LENGTH_LONG).show();
 
             AWSMobileClient.defaultMobileClient()
                 .getIdentityManager()

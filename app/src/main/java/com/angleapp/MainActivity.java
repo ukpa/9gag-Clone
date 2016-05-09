@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
+        Snackbar.make(coordinatorLayout,"Signed in successfully",Snackbar.LENGTH_LONG).show();
         fab = (FloatingActionButton) findViewById(R.id.fab);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

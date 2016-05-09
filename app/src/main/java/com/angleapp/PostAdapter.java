@@ -1,6 +1,7 @@
 package com.angleapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
@@ -109,6 +110,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         {
             Glide.with(context).load(mDataset.get(position).getUserImage()).into(holder.userImage);
         }
+        holder.userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,ProfileActivity.class);
+                i.putExtra("userid",mDataset.get(position).getUserId());
+                context.startActivity(i);
+            }
+        });
         awsMobileClient.createUserFileManager(AWSConfiguration.AMAZON_S3_USER_FILES_BUCKET, "public/", new UserFileManager.BuilderResultHandler() {
             @Override
             public void onComplete(UserFileManager userFileManager) {

@@ -38,7 +38,7 @@
                 android:layout_weight="1"
                 app:cp_addIcon="@android:drawable/ic_menu_add"
                 app:cp_cancelIcon="@android:drawable/ic_menu_close_clear_cancel"
-                app:cp_itemBackgroundNormal="@color/colorPrimary"
+                app:cp_itemBackgroundNormal="@color/colorPrimaryDark"
                 app:cp_itemBackgroundPressed="@color/colorAccent"
                 app:cp_itemMargin="5dp"
                 app:cp_textPaddingBottom="5dp"
@@ -95,7 +95,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary">
+            android:background="#ffffff">
 
 
         </android.support.v7.widget.Toolbar>

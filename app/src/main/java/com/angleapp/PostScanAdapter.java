@@ -5,6 +5,7 @@ package com.angleapp;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -105,6 +106,14 @@ public class PostScanAdapter extends RecyclerView.Adapter<PostScanAdapter.ViewHo
         {
             Glide.with(context).load(mDataset.get(position).getUserImage()).into(holder.userImage);
         }
+        holder.userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,ProfileActivity.class);
+                i.putExtra("userid",mDataset.get(position).getUserId());
+                context.startActivity(i);
+            }
+        });
         awsMobileClient.createUserFileManager(AWSConfiguration.AMAZON_S3_USER_FILES_BUCKET, "public/", new UserFileManager.BuilderResultHandler() {
             @Override
             public void onComplete(UserFileManager userFileManager) {
