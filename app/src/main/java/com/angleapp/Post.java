@@ -73,7 +73,7 @@ public class Post {
     public void setContent(final String _content) {
         this._content = _content;
     }
-    @DynamoDBIndexRangeKey(attributeName = "creationDate", globalSecondaryIndexNames = {"Categories","Votes",})
+    @DynamoDBIndexRangeKey(attributeName = "creationDate", globalSecondaryIndexNames = {"Keyword","Categories","Title",})
     public double getCreationDate() {
         return _creationDate;
     }
@@ -81,7 +81,7 @@ public class Post {
     public void setCreationDate(final double _creationDate) {
         this._creationDate = _creationDate;
     }
-    @DynamoDBIndexHashKey(attributeName = "keyword", globalSecondaryIndexName = "Votes")
+    @DynamoDBIndexHashKey(attributeName = "keyword", globalSecondaryIndexName = "Keyword")
     public String getKeyword() {
         return _keyword;
     }
@@ -89,7 +89,7 @@ public class Post {
     public void setKeyword(final String _keyword) {
         this._keyword = _keyword;
     }
-    @DynamoDBAttribute(attributeName = "title")
+    @DynamoDBIndexHashKey(attributeName = "title", globalSecondaryIndexName = "Title")
     public String getTitle() {
         return _title;
     }
