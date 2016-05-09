@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_funny"
+            android:icon="@mipmap/ic_funny"
+            android:title="Funny"
+           />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_wtf"
+            android:icon="@mipmap/ic_wtf"
+            android:title="WTF"
+            app:showAsAction="always"/>
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_geeky"
+            android:icon="@mipmap/ic_geeky"
+            android:title="Geeky" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_meme"
+            android:icon="@mipmap/ic_meme"
+            android:title="Meme" />
+        <item
+            android:id="@+id/nav_cute"
+            android:icon="@mipmap/ic_cute"
+            android:title="Cute" />
+        <item
+            android:id="@+id/nav_comic"
+            android:icon="@mipmap/ic_comic"
+            android:title="Comic" />
+        <item
+            android:id="@+id/nav_cosplay"
+            android:icon="@mipmap/ic_cosplay"
+            android:title="Cosplay" />
+        <item
+            android:id="@+id/nav_food"
+            android:icon="@mipmap/ic_food"
+            android:title="Food" />
+        <item
+            android:id="@+id/nav_girl"
+            android:icon="@mipmap/ic_girl"
+            android:title="Girl" />
+        <item
+            android:id="@+id/nav_timely"
+            android:icon="@mipmap/ic_timely"
+            android:title="Timely" />
+        <item
+            android:id="@+id/nav_design"
+            android:icon="@mipmap/ic_design"
+            android:title="Design" />
+        <item
+            android:id="@+id/nav_nsfw"
+            android:icon="@mipmap/ic_nsfw"
+            android:title="NSFW" />
     </group>
 
     <item android:title="Communicate">
@@ -25,11 +60,11 @@
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Make World Happy" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_signout"
+                android:icon="@mipmap/ic_power_settings_new_black_48dp"
+                android:title="Sign Out" />
         </menu>
     </item>
 

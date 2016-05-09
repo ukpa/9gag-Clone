@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_activity_temp);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
         fab = (FloatingActionButton) findViewById(R.id.fab);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity
         userName.setText(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
         Glide.with(this).load(SignInActivity.userImageUrl==null?SplashActivity.userImageUrl:SignInActivity.userImageUrl).into(profile);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
 
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
@@ -172,9 +173,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         // Retrieve the SearchView and plug it into SearchManager
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
         return true;
     }
     @Override
@@ -212,17 +214,46 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_funny) {
 
-        } else if (id == R.id.nav_slideshow) {
+        }
+        else if (id == R.id.nav_wtf) {
 
-        } else if (id == R.id.nav_manage) {
+        }
+        else if (id == R.id.nav_geeky) {
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_meme) {
 
-        } else if (id == R.id.nav_send) {
+        }
+        else if (id == R.id.nav_cute) {
+
+        }
+        else if (id == R.id.nav_comic) {
+
+        }
+        else if (id == R.id.nav_cosplay) {
+
+        }
+        else if (id == R.id.nav_food) {
+
+        }
+        else if (id == R.id.nav_girl) {
+
+        }
+        else if (id == R.id.nav_timely) {
+
+        }
+        else if (id == R.id.nav_design) {
+
+        }
+        else if (id == R.id.nav_nsfw) {
+
+        }
+        else if (id == R.id.nav_signout) {
+
+        }
+        else if (id == R.id.nav_share) {
 
         }
 
