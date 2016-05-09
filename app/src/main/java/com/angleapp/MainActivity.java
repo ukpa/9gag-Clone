@@ -1,5 +1,6 @@
 package com.angleapp;
 
+import android.animation.LayoutTransition;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -177,6 +178,7 @@ public class MainActivity extends AppCompatActivity
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setLayoutTransition(new LayoutTransition());
 
         return true;
     }

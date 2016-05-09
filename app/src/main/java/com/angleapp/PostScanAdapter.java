@@ -27,6 +27,8 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanLis
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.w3c.dom.Text;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -52,6 +54,7 @@ public class PostScanAdapter extends RecyclerView.Adapter<PostScanAdapter.ViewHo
         public TextView votePost;
         public ImageView cardUpVote;
         public ImageView cardDownVote;
+        public TextView cardKeyword;
         public ViewHolder(View v) {
             super(v);
             title = (TextView)v.findViewById(R.id.cardpostTitle);
@@ -61,6 +64,7 @@ public class PostScanAdapter extends RecyclerView.Adapter<PostScanAdapter.ViewHo
             userPost = (SimpleDraweeView) v.findViewById(R.id.cardPostImage);
             votePost = (TextView)v.findViewById(R.id.cardPostVotes);
             cardUpVote = (ImageView)v.findViewById(R.id.cardUpVote);
+            cardKeyword = (TextView)v.findViewById(R.id.cardKeyword);
         }
     }
 
@@ -95,6 +99,9 @@ public class PostScanAdapter extends RecyclerView.Adapter<PostScanAdapter.ViewHo
         }
         holder.title.setText(mDataset.get(position).getTitle());
         holder.username.setText(mDataset.get(position).getAuthor());
+        if(mDataset.get(position).getKeyword()!=null){
+            holder.cardKeyword.setText(mDataset.get(position).getKeyword());
+        }
         String friendlyTime = (String) DateUtils.getRelativeDateTimeString(context,
                 (long) mDataset.get(position).getCreationDate(),
                 DateUtils.MINUTE_IN_MILLIS,DateUtils.WEEK_IN_MILLIS,0);
