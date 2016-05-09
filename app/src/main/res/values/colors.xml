@@ -12,11 +12,11 @@
     <color name="dark_content_text">#333333</color>
     <color name="instructions_list_border_color">#FFDDDDDD</color>
     <color name="colorPrimary">#125688</color>
-    <color name="colorPrimaryDark">#125688</color>
+    <color name="colorPrimaryDark">#455A64</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#c8e8ff</color>
+    <color name="colorAccent">#9E9E9E</color>
 
 
 

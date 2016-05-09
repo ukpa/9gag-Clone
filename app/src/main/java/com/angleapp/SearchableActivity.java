@@ -21,12 +21,10 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryLi
 import java.util.ConcurrentModificationException;
 
 public class SearchableActivity extends AppCompatActivity {
-    CoordinatorLayout coordinatorLayout;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     PaginatedQueryList<Post> result1;
-    SwipeRefreshLayout swipeRefreshLayout;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

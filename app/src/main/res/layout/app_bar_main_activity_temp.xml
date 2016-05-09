@@ -20,20 +20,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="#ffff"
+            android:elevation="4dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ANGLE"
-                android:id="@+id/toolbarText"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:layout_gravity="center"
-                android:textSize="34sp"
-                />
+
 
         </android.support.v7.widget.Toolbar>
         <android.support.design.widget.TabLayout

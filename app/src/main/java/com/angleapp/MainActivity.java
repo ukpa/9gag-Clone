@@ -215,50 +215,62 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_funny) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_wtf) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_geeky) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_meme) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_cute) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_comic) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_cosplay) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_food) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_girl) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_timely) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_design) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_nsfw) {
-
+            openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_signout) {
-
+            AWSMobileClient.defaultMobileClient().getIdentityManager().signOut();
+            finish();
         }
         else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Lets make this world a happy place. \'ANGLE FTW!\' Peace.");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openKeyword(String keyword){
+        Intent i = new Intent(this,CategoryActivity.class);
+        i.putExtra("keyword",keyword);
+        startActivity(i);
     }
 }
