@@ -1,9 +1,12 @@
 package com.angleapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -56,6 +59,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView votePost;
         public ImageView cardUpVote;
         public TextView cardKeyword;
+        public  ImageView cardShare;
+        public ImageView deletePost;
+        public CardView cardView;
         public ViewHolder(View v) {
             super(v);
             title = (TextView)v.findViewById(R.id.cardpostTitle);
@@ -66,6 +72,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             votePost = (TextView)v.findViewById(R.id.cardPostVotes);
             cardUpVote = (ImageView)v.findViewById(R.id.cardUpVote);
             cardKeyword = (TextView)v.findViewById(R.id.cardKeyword);
+            cardShare = (ImageView)v.findViewById(R.id.shareCardPost);
+            deletePost = (ImageView)v.findViewById(R.id.deletePost);
+            cardView = (CardView)v.findViewById(R.id.card_view);
 
         }
     }
@@ -74,6 +83,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public PostAdapter(PaginatedQueryList<Post> myDataset,Context c) {
         mDataset = myDataset;
         context = c;
+
 
     }
 
@@ -95,6 +105,53 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        final String preUrl = "https://s3.amazonaws.com/angleapp-userfiles-mobilehub-1491286053/public/";
+        if(mDataset.get(position).getUserId().equals(Application.userId)){
+            holder.deletePost.setVisibility(View.VISIBLE);
+            holder.deletePost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setIcon(R.mipmap.ic_add_alert_black_24dp).setTitle("Sure about deleting the post?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+                                @Override
+                                protected Void doInBackground(Void... params) {
+                                    dbMapper.delete(mDataset.get(position));
+                                    return null;
+                                }
+
+                                @Override
+                                protected void onPostExecute(Void aVoid) {
+                                    holder.cardView.setVisibility(View.GONE);
+                                }
+                            };
+                            asyncTask.execute();
+                        }
+                    });
+                    builder.setNegativeButton("No, Leave it", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }
+            });
+        }
+        holder.cardShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,mDataset.get(position).getTitle()+" - "+preUrl+mDataset.get(position).getContent());
+                sendIntent.setType("text/plain");
+                context.startActivity(sendIntent);
+            }
+        });
+
 
         if(mDataset.get(position).getVotes().contains(Application.userId)){
             holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));

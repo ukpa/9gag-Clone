@@ -135,7 +135,7 @@ public class NewFragment extends Fragment {
 
                         final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
                                 .withHashKeyValues(postToFind).withConsistentRead(false);
-                        queryExpression.setIndexName("Categories");
+                        queryExpression.setIndexName("VoteIndex");
                         queryExpression.setScanIndexForward(false);
                         AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
                             @Override

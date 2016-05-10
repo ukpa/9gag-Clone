@@ -1,8 +1,11 @@
 package com.angleapp;
 
 import android.animation.LayoutTransition;
+import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -254,8 +257,23 @@ public class MainActivity extends AppCompatActivity
             openKeyword(item.getTitle().toString());
         }
         else if (id == R.id.nav_signout) {
-            AWSMobileClient.defaultMobileClient().getIdentityManager().signOut();
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.mipmap.ic_add_alert_black_24dp).setTitle("Please don't leave! :(");
+            builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            builder.setNegativeButton("No, Screw You!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                    AWSMobileClient.defaultMobileClient().getIdentityManager().signOut();
+                    finish();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
         }
         else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
