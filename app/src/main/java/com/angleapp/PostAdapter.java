@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -62,6 +64,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public  ImageView cardShare;
         public ImageView deletePost;
         public CardView cardView;
+        public ImageView cardComment;
         public ViewHolder(View v) {
             super(v);
             title = (TextView)v.findViewById(R.id.cardpostTitle);
@@ -75,6 +78,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             cardShare = (ImageView)v.findViewById(R.id.shareCardPost);
             deletePost = (ImageView)v.findViewById(R.id.deletePost);
             cardView = (CardView)v.findViewById(R.id.card_view);
+            cardComment = (ImageView)v.findViewById(R.id.cardComment);
+
 
         }
     }
@@ -153,6 +158,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
 
 
+        holder.cardComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context,CommentActivity.class);
+                i.putExtra("DATA",mDataset.get(position));
+                context.startActivity(i);
+            }
+        });
         if(mDataset.get(position).getVotes().contains(Application.userId)){
             holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));
         }

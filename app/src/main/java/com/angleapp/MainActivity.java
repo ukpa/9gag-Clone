@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_signout) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.mipmap.ic_add_alert_black_24dp).setTitle("Please don't leave! :(");
+            builder.setIcon(R.mipmap.ic_power_settings_new_black_48dp).setTitle("Please don't leave! :(");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 

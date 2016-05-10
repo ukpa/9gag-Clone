@@ -11,13 +11,14 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexRan
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBRangeKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @DynamoDBTable(tableName = "angleapp-mobilehub-1491286053-Posts")
 
-public class Post {
+public class Post implements Serializable {
     private String _userId;
     private String _postId;
     private String _author;

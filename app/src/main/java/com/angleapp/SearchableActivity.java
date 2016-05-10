@@ -58,6 +58,8 @@ public class SearchableActivity extends AppCompatActivity {
                 .withHashKeyValues(postToFind)
                 .withConsistentRead(false)
                 .withLimit(20);
+        queryExpression.setIndexName("Title");
+        queryExpression.setScanIndexForward(false);
         AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
             @Override
             protected void onPostExecute(PaginatedQueryList<Post> result) {

@@ -45,6 +45,8 @@ public class CategoryActivity extends AppCompatActivity {
                 .withHashKeyValues(postToFind)
                 .withConsistentRead(false)
                 .withLimit(20);
+        queryExpression.setIndexName("Keyword");
+        queryExpression.setScanIndexForward(false);
         AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
             @Override
             protected void onPostExecute(PaginatedQueryList<Post> result) {

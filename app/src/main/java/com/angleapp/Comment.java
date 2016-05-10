@@ -3,7 +3,6 @@ package com.angleapp;
 /**
  * Created by unnikrishnanpatel on 11/05/16.
  */
-
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBIndexHashKey;
@@ -21,6 +20,8 @@ public class Comment {
     private String _postId;
     private double _creationDate;
     private String _comment;
+    private String _userid;
+    private String _username;
     private double _voteCount;
     private Set<String> _votes;
 
@@ -50,6 +51,22 @@ public class Comment {
     public void setComment(final String _comment) {
         this._comment = _comment;
     }
+    @DynamoDBAttribute(attributeName = "userid")
+    public String getUserid() {
+        return _userid;
+    }
+
+    public void setUserid(final String _userid) {
+        this._userid = _userid;
+    }
+    @DynamoDBAttribute(attributeName = "username")
+    public String getUsername() {
+        return _username;
+    }
+
+    public void setUsername(final String _username) {
+        this._username = _username;
+    }
     @DynamoDBIndexRangeKey(attributeName = "voteCount", globalSecondaryIndexName = "CommentVoteSort")
     public double getVoteCount() {
         return _voteCount;
@@ -68,4 +85,3 @@ public class Comment {
     }
 
 }
-
