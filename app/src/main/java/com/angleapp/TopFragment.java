@@ -124,14 +124,14 @@ public class TopFragment extends Fragment {
                     @Override
                     public void handleIdentityID(final String identityId) {
                         Post postToFind = new Post();
-                        postToFind.setUserId(identityId);
+                        postToFind.setCategory("Global");
                         AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
                         final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
 
                         final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                                .withHashKeyValues(postToFind)
-                                .withConsistentRead(true)
-                                .withLimit(20);
+                                .withHashKeyValues(postToFind).withConsistentRead(false);
+                        queryExpression.setIndexName("VoteIndex");
+                        queryExpression.setScanIndexForward(false);
                         AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
                             @Override
                             protected void onPostExecute(PaginatedQueryList<Post> result) {

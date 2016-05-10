@@ -157,6 +157,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));
                     mDataset.get(position).setVotes(votes);
                     holder.votePost.setText(String.valueOf(votes.size()-1));
+                    mDataset.get(position).setVoteCount(votes.size()-1);
                     AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... params) {
@@ -171,6 +172,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     Log.d("ahsjahsjhajhsjahsj",String.valueOf(votes));
                     holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart_outline));
                     holder.votePost.setText(String.valueOf(votes.size()-1));
+                    mDataset.get(position).setVoteCount(votes.size()-1);
                     mDataset.get(position).setVotes(votes);
                     AsyncTask<Void,Void,Void> asyncTask = new AsyncTask<Void, Void, Void>() {
                         @Override

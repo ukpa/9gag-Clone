@@ -46,30 +46,42 @@
                 app:cp_textPaddingRight="10dp"
                 app:cp_textPaddingTop="5dp"
                 app:cp_simplified="false" />
-
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="6"
-            android:id="@+id/uploadRadio"
-            android:gravity="center">
+            android:weightSum="4">
+            <RadioGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/uploadRadio"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_weight="2">
 
-            <RadioButton
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Global"
+                    android:id="@+id/uploadGlobal"
+                    android:checked="true"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Local"
+                    android:id="@+id/uploadLocal" />
+            </RadioGroup>
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Global"
-                android:id="@+id/uploadGlobal"
-                android:layout_weight="3"
-                android:checked="true"
-                />
-            <RadioButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Local"
-                android:id="@+id/uploadLocal"
-                android:layout_weight="3"/>
-        </RadioGroup>
+                android:layout_weight="2"
+                android:id="@+id/addLocation"
+                android:text="Add location"/>
+        </LinearLayout>
+
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

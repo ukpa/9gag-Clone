@@ -74,4 +74,5 @@ dependencies {
     compile 'com.facebook.fresco:animated-gif:0.10.0'
     compile 'com.facebook.fresco:animated-webp:0.10.0'
     compile 'com.anton46:collection-picker:1.0.2'
+    compile 'com.google.android.gms:play-services-location:8.4.0'
 }

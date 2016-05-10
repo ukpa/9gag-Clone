@@ -1,14 +1,20 @@
 package com.angleapp;
 
 import android.*;
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +50,9 @@ import com.anton46.collectionitempicker.CollectionPicker;
 import com.anton46.collectionitempicker.Item;
 import com.anton46.collectionitempicker.OnItemClickListener;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,27 +61,31 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
-public class UploadActivity extends AppCompatActivity {
+public class UploadActivity extends AppCompatActivity  {
     static final int PICK_PICTURE_REQUEST = 1111;
     String data_path;
     SimpleDraweeView imageView;
     UserFileManager userFileManager;
-    AWSMobileClient awsMobileClient= AWSMobileClient.defaultMobileClient();
+    AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
     ProgressBar progressBar;
     EditText title;
     RadioGroup uploadRadioGroup;
     RadioButton uploadradioButton;
     String keywords = "";
-    String content ="";
+    String content = "";
     Post post = new Post();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_upload);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -106,8 +119,11 @@ public class UploadActivity extends AppCompatActivity {
         picker.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onClick(Item item, int position) {
+
                 keywords = item.text;
                 getSupportActionBar().setTitle("Post / "+item.text);
+
+
 
 
             }
@@ -117,6 +133,7 @@ public class UploadActivity extends AppCompatActivity {
 
 
     }
+
 
     private void postData() {
         post = new Post();

@@ -57,7 +57,7 @@ public class Post {
     public void setAuthor(final String _author) {
         this._author = _author;
     }
-    @DynamoDBIndexHashKey(attributeName = "category", globalSecondaryIndexName = "Categories")
+    @DynamoDBIndexHashKey(attributeName = "category", globalSecondaryIndexNames = {"Categories","VoteIndex",})
     public String getCategory() {
         return _category;
     }
@@ -105,7 +105,7 @@ public class Post {
     public void setUserImage(final String _userImage) {
         this._userImage = _userImage;
     }
-    @DynamoDBAttribute(attributeName = "voteCount")
+    @DynamoDBIndexRangeKey(attributeName = "voteCount", globalSecondaryIndexName = "VoteIndex")
     public double getVoteCount() {
         return _voteCount;
     }

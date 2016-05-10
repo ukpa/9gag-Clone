@@ -18,8 +18,16 @@ import com.amazonaws.mobile.user.IdentityManager;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBQueryExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedQueryList;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ComparisonOperator;
+import com.amazonaws.services.dynamodbv2.model.Condition;
 
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -127,14 +135,14 @@ public class HotFragment extends Fragment {
                     @Override
                     public void handleIdentityID(final String identityId) {
                         Post postToFind = new Post();
-                        postToFind.setUserId(identityId);
+                        postToFind.setCategory("Global");
+                        String date = String.valueOf(new Date().getTime()-86400000);
                         AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
                         final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-
-                        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                                .withHashKeyValues(postToFind)
-                                .withConsistentRead(true)
-                                .withLimit(20);
+                        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>().
+                                withHashKeyValues(postToFind).withConsistentRead(false);
+                        queryExpression.setIndexName("VoteIndex");
+                        queryExpression.setScanIndexForward(false);
                         AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
                             @Override
                             protected void onPostExecute(PaginatedQueryList<Post> result) {
@@ -150,7 +158,7 @@ public class HotFragment extends Fragment {
                             @Override
                             protected PaginatedQueryList<Post> doInBackground(Void... params) {
                                 result1 = dbMapper.query(Post.class, queryExpression);
-                                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
+
                                 return result1;
                             }
 
