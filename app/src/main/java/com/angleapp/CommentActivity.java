@@ -43,6 +43,7 @@ public class CommentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Comments");
         recyclerView = (RecyclerView)findViewById(R.id.commentRecyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -106,6 +107,7 @@ public class CommentActivity extends AppCompatActivity {
 
                         final DynamoDBQueryExpression<Comment> queryExpression = new DynamoDBQueryExpression<Comment>()
                                 .withHashKeyValues(commentToFind).withConsistentRead(false);
+                        queryExpression.setIndexName("CommentVoteSort");
                         queryExpression.setScanIndexForward(false);
                         AsyncTask<Void,Void,PaginatedQueryList<Comment>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Comment>>() {
                             @Override
@@ -117,23 +119,17 @@ public class CommentActivity extends AppCompatActivity {
                                     recyclerView.setVisibility(View.GONE);
                                     TextView textView = (TextView)findViewById(R.id.emptyView);
                                     textView.setVisibility(View.VISIBLE);
-                                    textView.setText("No such post found. Sorry!");
-
+                                    textView.setText(R.string.no_comments_found);
                                 }
                                 else{
                                     mAdapter = new CommentAdapter(result,CommentActivity.this);
                                     recyclerView.swapAdapter(mAdapter,false);
-
                                 }
-
-
-
                             }
 
                             @Override
                             protected PaginatedQueryList<Comment> doInBackground(Void... params) {
                                 result1 = dbMapper.query(Comment.class, queryExpression);
-                                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
                                 return result1;
                             }
 
@@ -145,8 +141,6 @@ public class CommentActivity extends AppCompatActivity {
 
                     @Override
                     public void handleError(final Exception exception) {
-                        // This should never happen since the Identity ID is retrieved
-                        // when the Application starts.
 
                     }
                 });

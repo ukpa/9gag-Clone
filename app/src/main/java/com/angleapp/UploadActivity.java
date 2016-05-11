@@ -83,9 +83,7 @@ public class UploadActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_upload);
-
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -93,7 +91,6 @@ public class UploadActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setTitle("Post");
          title = (EditText)findViewById(R.id.postTitle);
-        //final EditText category = (EditText)findViewById(R.id.postCategory);
         imageView= (SimpleDraweeView) findViewById(R.id.postImage);
         progressBar = (ProgressBar)findViewById(R.id.uploadProgress);
         createUserFileManager();

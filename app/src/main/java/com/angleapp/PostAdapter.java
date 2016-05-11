@@ -48,11 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
     Context context;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public TextView title;
         public TextView username;
         public TextView createdAt;
@@ -84,7 +80,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public PostAdapter(PaginatedQueryList<Post> myDataset,Context c) {
         mDataset = myDataset;
         context = c;
@@ -168,6 +163,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
         if(mDataset.get(position).getVotes().contains(Application.userId)){
             holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart));
+        }else{
+            holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart_outline));
         }
         holder.title.setText(mDataset.get(position).getTitle());
         holder.username.setText(mDataset.get(position).getAuthor());
@@ -239,7 +236,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
                 }else if(votes.contains(Application.userId)){
                     votes.remove(Application.userId);
-                    Log.d("ahsjahsjhajhsjahsj",String.valueOf(votes));
                     holder.cardUpVote.setImageDrawable(PostAdapter.this.context.getResources().getDrawable(R.mipmap.heart_outline));
                     holder.votePost.setText(String.valueOf(votes.size()-1));
                     mDataset.get(position).setVoteCount(votes.size()-1);

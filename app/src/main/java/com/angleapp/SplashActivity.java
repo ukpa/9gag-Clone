@@ -123,7 +123,7 @@ public class SplashActivity extends Activity {
 
                 // Wait for the splash timeout.
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) { }
 
                 // Expire the splash page delay.

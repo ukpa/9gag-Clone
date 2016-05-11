@@ -26,7 +26,7 @@ import java.util.ConcurrentModificationException;
  * A simple {@link Fragment} subclass.
  */
 public class TopFragment extends Fragment {
-    CoordinatorLayout coordinatorLayout;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -81,40 +81,6 @@ public class TopFragment extends Fragment {
 
         return v;
     }
-    private void refreshFeed() {
-        Post postToFind = new Post();
-        postToFind.setUserId(Application.userId);
-        AWSMobileClient awsMobileClient = AWSMobileClient.defaultMobileClient();
-        final DynamoDBMapper dbMapper = awsMobileClient.getDynamoDBMapper();
-
-        final DynamoDBQueryExpression<Post> queryExpression = new DynamoDBQueryExpression<Post>()
-                .withHashKeyValues(postToFind)
-                .withConsistentRead(true)
-                .withLimit(20);
-        AsyncTask<Void,Void,PaginatedQueryList<Post>> asyncTask = new AsyncTask<Void, Void, PaginatedQueryList<Post>>() {
-            @Override
-            protected void onPostExecute(PaginatedQueryList<Post> result) {
-                super.onPostExecute(result);
-                mAdapter = new PostAdapter(result,getActivity());
-                swipeRefreshLayout.setRefreshing(false);
-                mRecyclerView.swapAdapter(mAdapter,false);
-
-
-
-            }
-
-            @Override
-            protected PaginatedQueryList<Post> doInBackground(Void... params) {
-                result1 = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
-                return result1;
-            }
-
-
-        };
-        asyncTask.execute();
-    }
-
 
     private void initRefreshFeed() {
         AWSMobileClient
@@ -139,19 +105,12 @@ public class TopFragment extends Fragment {
                                 mAdapter = new PostAdapter(result,getActivity());
                                 swipeRefreshLayout.setRefreshing(false);
                                 mRecyclerView.swapAdapter(mAdapter,false);
-
-
-
                             }
-
                             @Override
                             protected PaginatedQueryList<Post> doInBackground(Void... params) {
                                 result1 = dbMapper.query(Post.class, queryExpression);
-                                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
                                 return result1;
                             }
-
-
                         };
                         asyncTask.execute();
 

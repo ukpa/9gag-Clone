@@ -33,11 +33,7 @@ public class SearchableActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemViewCacheSize(20);
-
         mAdapter = new PostAdapter(result1,this);
-
-
-        // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
@@ -68,26 +64,18 @@ public class SearchableActivity extends AppCompatActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     TextView textView = (TextView)findViewById(R.id.emptyView);
                     textView.setVisibility(View.VISIBLE);
-                    textView.setText("No such post found. Sorry!");
-
+                    textView.setText(R.string.post_not_found);
                 }
                 else{
                     mAdapter = new PostAdapter(result,SearchableActivity.this);
                     mRecyclerView.swapAdapter(mAdapter,false);
-
                 }
-
-
-
-
 
             }
 
             @Override
             protected PaginatedQueryList<Post> doInBackground(Void... params) {
                 result1 = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
-
                 return result1;
             }
 

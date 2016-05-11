@@ -46,19 +46,14 @@
                 app:cp_textPaddingRight="10dp"
                 app:cp_textPaddingTop="5dp"
                 app:cp_simplified="false" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="4">
+
             <RadioGroup
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/uploadRadio"
                 android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:layout_weight="2">
+                android:gravity="center">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -73,13 +68,6 @@
                     android:text="Local"
                     android:id="@+id/uploadLocal" />
             </RadioGroup>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:id="@+id/addLocation"
-                android:text="Add location"/>
-        </LinearLayout>
 
 
         <EditText
@@ -107,7 +95,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#ffffff">
+            >
 
 
         </android.support.v7.widget.Toolbar>

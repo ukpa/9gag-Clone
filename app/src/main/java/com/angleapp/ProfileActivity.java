@@ -53,30 +53,20 @@ public class ProfileActivity extends AppCompatActivity {
                     mRecyclerView.setVisibility(View.GONE);
                     TextView textView = (TextView)findViewById(R.id.emptyView);
                     textView.setVisibility(View.VISIBLE);
-                    textView.setText("No such post found. Sorry!");
-
+                    textView.setText(R.string.post_not_found);
                 }
                 else{
                     mAdapter = new PostAdapter(result,ProfileActivity.this);
                     mRecyclerView.swapAdapter(mAdapter,false);
-
                 }
-
-
-
-
 
             }
 
             @Override
             protected PaginatedQueryList<Post> doInBackground(Void... params) {
                 result1 = dbMapper.query(Post.class, queryExpression);
-                Log.d("gahdghagdhagdhgahgdhagd",String.valueOf(result1.size()));
-
                 return result1;
             }
-
-
         };
         asyncTask.execute();
     }

@@ -34,6 +34,8 @@ import android.widget.TextView;
 import com.amazonaws.mobile.AWSMobileClient;
 import com.amazonaws.mobile.content.ContentManager;
 import com.amazonaws.mobile.user.IdentityManager;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.InitializationException;
+import com.amazonaws.mobileconnectors.amazonmobileanalytics.MobileAnalyticsManager;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -49,19 +51,25 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
     static FloatingActionButton fab;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
     private int[] tabIcons = {
             R.mipmap.ic_trending_up,
-           // R.mipmap.ic_whatshot,
             R.mipmap.ic_public
     };
+    private static MobileAnalyticsManager analytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_temp);
+        try {
+            analytics = MobileAnalyticsManager.getOrCreateInstance(
+                    this.getApplicationContext(),
+                    "appId",
+                    "identityPoolId"
+            );
+        } catch(InitializationException ex) {
+            Log.e(this.getClass().getName(), "Failed to initialize Amazon Mobile Analytics", ex);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         coordinatorLayout = (CoordinatorLayout)findViewById(R.id.mainCoordinator);
@@ -77,7 +85,6 @@ public class MainActivity extends AppCompatActivity
         View headerLayout = navigationView.inflateHeaderView(R.layout.nav_header_main_activity_temp);
         ImageView profile = (ImageView)headerLayout.findViewById(R.id.imageProfile);
         TextView userName = (TextView)headerLayout.findViewById(R.id.profileUserName);
-        TextView userEmail = (TextView)headerLayout.findViewById(R.id.profileUserEmail);
         userName.setText(AWSMobileClient.defaultMobileClient().getIdentityManager().getUserName());
         Glide.with(this).load(SignInActivity.userImageUrl==null?SplashActivity.userImageUrl:SignInActivity.userImageUrl).into(profile);
         navigationView.setNavigationItemSelectedListener(this);
@@ -100,14 +107,10 @@ public class MainActivity extends AppCompatActivity
                     public void handleIdentityID(final String identityId) {
 
                         Application.userId = identityId;
-                        Log.d("fuck yes","done");
                     }
 
                     @Override
                     public void handleError(final Exception exception) {
-                        // This should never happen since the Identity ID is retrieved
-                        // when the Application starts.
-
                     }
                 });
 
@@ -131,14 +134,12 @@ public class MainActivity extends AppCompatActivity
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        //tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new TopFragment(), "TOP");
-        //adapter.addFragment(new HotFragment(), "HOT");
         adapter.addFragment(new NewFragment(), "NEW");
 
 
@@ -177,7 +178,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        // Retrieve the SearchView and plug it into SearchManager
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -192,6 +192,24 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(analytics != null) {
+            analytics.getSessionClient().pauseSession();
+            //Attempt to send any events that have been recorded to the Mobile Analytics service.
+            analytics.getEventClient().submitEvents();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(analytics != null)  {
+            analytics.getSessionClient().resumeSession();
         }
     }
 
@@ -278,7 +296,7 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Lets make this world a happy place. \'ANGLE FTW!\' Peace.");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app));
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 

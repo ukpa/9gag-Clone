@@ -56,7 +56,7 @@ public class ContentHelper {
                     String.format(context.getString(R.string.content_helper_error_no_app),
                             shareIntent.getType()));
             errorDialogBuilder.setNeutralButton(
-                    context.getString(R.string.content_dialog_ok), null);
+                    "ok", null);
             errorDialogBuilder.show();
         }
     }
