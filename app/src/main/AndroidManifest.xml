@@ -148,7 +148,7 @@
         <activity
             android:name=".ProfileActivity"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".CommentActivity"></activity>
+        <activity android:name=".CommentActivity" android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
