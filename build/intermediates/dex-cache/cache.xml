@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-cognito/2.2.15/3c7a5d15364d8e89397517b86a81a673e6f1bc58/aws-android-sdk-cognito-2.2.15.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="3c7a5d15364d8e89397517b86a81a673e6f1bc58">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-cognito-2.2.15_e5721f6c552640e48e3cda723a7b47e3a8f20922/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.1"
@@ -16,18 +9,144 @@
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_5e5f48907b63e967f33ce1f092eab45192574e45/classes.dex" />
     </item>
     <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_828305dfa6b96bda8a0bb425656a201d761ddc6f/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-mobileanalytics/2.2.15/605719d9cb9cfa774789802f45ed2087977c61a/aws-android-sdk-mobileanalytics-2.2.15.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="0605719d9cb9cfa774789802f45ed2087977c61a">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-mobileanalytics-2.2.15_2d1f7278e996102ace1b21ab29fdbefcf96bdefe/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb/2.2.15/da947e72eafbe7d05f9adb93c389ab336ff9e70e/aws-android-sdk-ddb-2.2.15.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="da947e72eafbe7d05f9adb93c389ab336ff9e70e">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-ddb-2.2.15_f5666bd92e4ecf762f1c12e8a68905891b9b2d9c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.2.15/17711ea6b18d44968fa4644e8669b2912cc85b2/aws-android-sdk-s3-2.2.15.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="017711ea6b18d44968fa4644e8669b2912cc85b2">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-s3-2.2.15_cc1ef1d76e6f706463d433007bcf65d5456794a1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/webpsupport/0.10.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="85f4a6939efa90db6726ac2e3e2f6bd48d13b795">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-webpsupport-0.10.0_27cf9a946907bf233f9df477e0e424466db382fe/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-8.4.0_241c2ecf3d5e400b140a271f113fbddac0671dd9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base-support/0.10.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="f54beeb1646c428f456a0a3acd0da5ce6892b458">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-base-support-0.10.0_f5a6bf61bfcb76d21669c749b5526c11ac3b47a3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.10.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="d323cf4983bdfce7136a1ce5e32710e1b36b20fe">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fbcore-0.10.0_1b2d0bd1cfa59032cbae4f4eb229d840b40c81e5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_51325ecc997f3a83a68ca7c3bd3df861906990a3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.10.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="857099e23430445aeb65cf703d5adf646ff280f1">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fresco-0.10.0_6480e7706ea85d89d8f3681b3e77dcab37890d68/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.orhanobut/dialogplus/1.11/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="184f86117c6463267c1f0deba84d4853cb165c40">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-dialogplus-1.11_326beba3aefc4505b0bcef27c823ed27c0ca0f78/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_9820105e2922b826b2e284e5d8062805b7a7f9e4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-8.4.0_d8f54336e9a0be1ef55389a19cd4a4c0f56ad5b7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.melnykov-floatingactionbutton-1.3.0_9d113f2cf7463dfea29273f81b0326c0ef5e732c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base/0.10.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="682e5e4a5ac143145dddc5e77eab7b609432da23">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-base-0.10.0_5291798adf756a4bd870bfaa1cbc904ef976e2fa/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_e87adf2662a87aa5010d52f10543064460c73c6c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb-mapper/2.2.15/89f8af08dc19bbb4a0dc91f60bf4727c3c3752d8/aws-android-sdk-ddb-mapper-2.2.15.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="89f8af08dc19bbb4a0dc91f60bf4727c3c3752d8">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-ddb-mapper-2.2.15_f3f3051d5160a178a1d39f8c41527a88192615f5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-sns/2.2.15/4c93bb77f79b3cee20c2311169394edf37ca4a4/aws-android-sdk-sns-2.2.15.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="04c93bb77f79b3cee20c2311169394edf37ca4a4">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-sns-2.2.15_2b61841a211167304d00969fb894064756659540/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_a5087c056981678b623edb3d4e158fffb1ec6014/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-cognito/2.2.15/3c7a5d15364d8e89397517b86a81a673e6f1bc58/aws-android-sdk-cognito-2.2.15.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="3c7a5d15364d8e89397517b86a81a673e6f1bc58">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-cognito-2.2.15_e5721f6c552640e48e3cda723a7b47e3a8f20922/classes.dex" />
+    </item>
+    <item
+        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_828305dfa6b96bda8a0bb425656a201d761ddc6f/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/0.10.0/jars/classes.jar"
@@ -44,32 +163,11 @@
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-core-2.2.15_15b59b4e99a9c4d0a9cbc8be1b179574b30bc801/classes.dex" />
     </item>
     <item
-        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb/2.2.15/da947e72eafbe7d05f9adb93c389ab336ff9e70e/aws-android-sdk-ddb-2.2.15.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="da947e72eafbe7d05f9adb93c389ab336ff9e70e">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-ddb-2.2.15_f5666bd92e4ecf762f1c12e8a68905891b9b2d9c/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-lambda/2.2.15/dd029b4fa567da99ce2178fc1ac73824fcfb6928/aws-android-sdk-lambda-2.2.15.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="dd029b4fa567da99ce2178fc1ac73824fcfb6928">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-lambda-2.2.15_cf180e0b3a89bad1e63ef337f4333146441c9c54/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.2.15/17711ea6b18d44968fa4644e8669b2912cc85b2/aws-android-sdk-s3-2.2.15.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="017711ea6b18d44968fa4644e8669b2912cc85b2">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-s3-2.2.15_cc1ef1d76e6f706463d433007bcf65d5456794a1/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/webpsupport/0.10.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="85f4a6939efa90db6726ac2e3e2f6bd48d13b795">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-webpsupport-0.10.0_27cf9a946907bf233f9df477e0e424466db382fe/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/0.10.0/jars/classes.jar"
@@ -110,15 +208,8 @@
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="889955f0733b068c61b8cbed3a66560aa2ba6f25">
+        sha1="42299c7eaba747beb14412f61bf0d0f12e872777">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_95fdf70d130dc16333065f565b439ae09b7d2c96/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-8.4.0_241c2ecf3d5e400b140a271f113fbddac0671dd9/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
@@ -128,13 +219,6 @@
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_0b7af7aad1d509c14997cce038d05c0bc0aee44f/classes.dex" />
     </item>
     <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base-support/0.10.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="f54beeb1646c428f456a0a3acd0da5ce6892b458">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-base-support-0.10.0_f5a6bf61bfcb76d21669c749b5526c11ac3b47a3/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.1"
@@ -142,53 +226,11 @@
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_48f7e22fc219199b6907022ecc27fd55f69112bc/classes.dex" />
     </item>
     <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/0.10.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="d323cf4983bdfce7136a1ce5e32710e1b36b20fe">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fbcore-0.10.0_1b2d0bd1cfa59032cbae4f4eb229d840b40c81e5/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.anton46/collection-picker/1.0.2/jars/classes.jar"
         jumboMode="true"
         revision="23.0.1"
         sha1="6ea945ab5dfcc63fa17ca2f0800023ff038a599f">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.anton46-collection-picker-1.0.2_ea80b4b8d179f1ab7a4cc3d4f8d37f96977b1842/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_51325ecc997f3a83a68ca7c3bd3df861906990a3/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/0.10.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="857099e23430445aeb65cf703d5adf646ff280f1">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-fresco-0.10.0_6480e7706ea85d89d8f3681b3e77dcab37890d68/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.orhanobut/dialogplus/1.11/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="184f86117c6463267c1f0deba84d4853cb165c40">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-dialogplus-1.11_326beba3aefc4505b0bcef27c823ed27c0ca0f78/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="debf30ce0a7560396b6235edef77e447006454c2">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_9820105e2922b826b2e284e5d8062805b7a7f9e4/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-8.4.0_d8f54336e9a0be1ef55389a19cd4a4c0f56ad5b7/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/0.10.0/jars/classes.jar"
@@ -210,13 +252,6 @@
         revision="23.0.1"
         sha1="1a78298e7724d5440d210bcb946b3493250d354d">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-8.4.0_f8838b97402bc2cf13889fab1cc1950f97af86af/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.melnykov-floatingactionbutton-1.3.0_9d113f2cf7463dfea29273f81b0326c0ef5e732c/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
@@ -247,39 +282,11 @@
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_d773584ddb2d4720df9a3ef36e56daf791d6cd1a/classes.dex" />
     </item>
     <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.facebook.fresco/animated-base/0.10.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="682e5e4a5ac143145dddc5e77eab7b609432da23">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-base-0.10.0_5291798adf756a4bd870bfaa1cbc904ef976e2fa/classes.dex" />
-    </item>
-    <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.1"
-        sha1="0eee897c4c55a35558cfcbd7f9722f278cd7b278">
+        sha1="d0a05822dfaae57350ae1a0d26dcaa00aeb29239">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_e0fd7b6a8b1cf206e66c9c64c8f1202633c34263/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-sns/2.2.15/4c93bb77f79b3cee20c2311169394edf37ca4a4/aws-android-sdk-sns-2.2.15.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="04c93bb77f79b3cee20c2311169394edf37ca4a4">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-sns-2.2.15_2b61841a211167304d00969fb894064756659540/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb-mapper/2.2.15/89f8af08dc19bbb4a0dc91f60bf4727c3c3752d8/aws-android-sdk-ddb-mapper-2.2.15.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="89f8af08dc19bbb4a0dc91f60bf4727c3c3752d8">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/aws-android-sdk-ddb-mapper-2.2.15_f3f3051d5160a178a1d39f8c41527a88192615f5/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_e87adf2662a87aa5010d52f10543064460c73c6c/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-sqs/2.2.15/2bbce62c1a3c3d5dcfe2e0edd35e80e0201490e/aws-android-sdk-sqs-2.2.15.jar"
@@ -294,13 +301,6 @@
         revision="23.0.1"
         sha1="340c6bfb6944bfdc265084ee5ffbb1bd7f425083">
         <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.fresco-animated-webp-0.10.0_2917749ecf6a6f3b486e36e55fd124a0bbb164c1/classes.dex" />
-    </item>
-    <item
-        jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.1"
-        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
-        <dex dex="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_a5087c056981678b623edb3d4e158fffb1ec6014/classes.dex" />
     </item>
     <item
         jar="/Users/unnikrishnanpatel/AndroidStudioProjects/AngleApp-aws-my-sample-app-android (3)/AngleApp/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/jars/classes.jar"
