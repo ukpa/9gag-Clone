@@ -17,7 +17,9 @@
         android:layout_alignTop="@id/list_item_icon"
         android:layout_toRightOf="@+id/list_item_icon"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/list_item_icon" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -27,5 +29,8 @@
         android:layout_below="@id/list_item_title"
         android:layout_toRightOf="@+id/list_item_icon"
         android:layout_alignLeft="@+id/list_item_title"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/list_item_icon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/list_item_title" />
 </RelativeLayout>

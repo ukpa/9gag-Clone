@@ -8,4 +8,5 @@
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:gravity="center_vertical"
-    android:paddingLeft="6dp"/>
+    android:paddingLeft="6dp"
+    android:paddingStart="6dp" />

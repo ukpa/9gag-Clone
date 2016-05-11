@@ -37,12 +37,12 @@
                         android:gravity="center"
                         android:paddingLeft="10dp"
                         android:layout_weight="1"
-                        >
+                        android:paddingStart="10dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/cardPostUserName"
-                            android:layout_gravity="left"
+                            android:layout_gravity="start"
                             android:textSize="16sp"
                             android:textStyle="italic"
                             />
@@ -50,7 +50,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/cardPostCreationTime"
-                            android:layout_gravity="left"
+                            android:layout_gravity="start"
                             />
 
                     </LinearLayout>
@@ -61,7 +61,7 @@
                     android:id="@+id/cardKeyword"
                     android:background="@drawable/keyword_back"
                     android:text="Default"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:layout_gravity="center_vertical"/>
 
 

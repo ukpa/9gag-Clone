@@ -9,7 +9,8 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:id="@+id/drawer_item_icon"
-        android:paddingLeft="16dp"/>
+        android:paddingLeft="16dp"
+        android:paddingStart="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,5 +19,6 @@
         android:paddingLeft="12dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text=""
-        android:id="@+id/drawer_item_text" />
+        android:id="@+id/drawer_item_text"
+        android:paddingStart="12dp" />
 </LinearLayout>
